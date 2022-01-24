@@ -13,12 +13,7 @@
     background-image: url(../../../images/like-hover.png);
 }
 
-/*
-.galery__like:active {
-    background-image: url(../../../images/like-activ.png);
-}
-*/
 
-.galery__like:focus {
+.galery__like:active {
     background-image: url(../../../images/like-activ.png);
 }
