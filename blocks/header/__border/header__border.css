@@ -1,0 +1,11 @@
+.header__border {
+    border-bottom: #545454 solid 1px;  
+    margin-top: 4%;
+    opacity: 70%;
+}
+
+@media (max-width: 460px) {
+    .header__border {
+        margin-top: 8%;
+        }
+}

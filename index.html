@@ -10,24 +10,85 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Проект Место</title>
 </head>
+
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="./images/mesto-logo.svg">
+        <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
+        <div class="header__border"></div>
 
     </header>
-    <main>
+
+    <main class="content">
         <section class="profile">
+            <div class="profile__container">
+                <img class="profile__photo" src="./images/profile-kusto.jpg"
+                    alt="фото Жака-Ива Кусто извесного исследователя океана">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <h2 class="profile__subtitle">Исследователь океана</h2>
+                <img class="profile__edit-button" src="./images/profile-edit-button.png"
+                    alt="кнопка редактирования профиля">
+            </div>
+            <div class="profile__add-button"></div>
 
         </section>
 
         <section class="galery">
+            <ul class="galery__list">
+                <li class="galery__item">
+                    <img class="galery__image" src="./images/galery-karachaevsk.jpg"
+                        alt="Старинное сооружение на фоне гор">
+                    <div class="galery__container">
+                        <h2 class="galery__title">Карачаевск</h2>
+                        <input type="button" class="galery__like">
+                    </div>
+                </li>
+                <li class="galery__item">
+                    <img class="galery__image" src="./images/galery-mount-elbrus.jpg" alt="Гора Эльбрус на закате">
+                    <div class="galery__container">
+                        <h2 class="galery__title">Гора Эльбрус</h2>
+                        <input type="button" class="galery__like">
+                    </div>
+                </li>
+                <li class="galery__item">
+                    <img class="galery__image" src="./images/galery-dombay.jpg" alt="Лес на фоне горных пиков">
+                    <div class="galery__container">
+                        <h2 class="galery__title">Домбай</h2>
+                        <input type="button" class="galery__like">
+                    </div>
+                </li>
+                <li class="galery__item">
+                    <img class="galery__image" src="./images/galery-elbrus.jpeg" alt="дорога ведущая к горе">
+                    <div class="galery__container">
+                        <h2 class="galery__title">Гора Эльбрус</h2>
+                        <input type="button" class="galery__like">
+                    </div>
+                </li>
+                <li class="galery__item">
+                    <img class="galery__image" src="./images/galery-cable-car.jpg" alt="Канатная дорога в горах">
+                    <div class="galery__container">
+                        <h2 class="galery__title">Домбай</h2>
+                        <input type="button" class="galery__like">
+                    </div>
+                </li>
+                <li class="galery__item">
+                    <img class="galery__image" src="./images/galery-mountain-lake.jpg" alt="Прозрачное горное озеро">
+                    <div class="galery__container">
+                        <h2 class="galery__title">Карачаево-Черкесия</h2>
+                        <input type="button" class="galery__like">
+                    </div>
+                </li>
+
+            </ul>
 
         </section>
 
     </main>
+      
     <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
 
     </footer>
-    
+
 </body>
+
 </html>

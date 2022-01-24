@@ -1,0 +1,21 @@
+.profile__photo {
+    max-width: 80%;
+    border-radius: 50%;
+    overflow: hidden;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+@media (max-width: 768px) {
+    .profile__photo{
+        grid-row-end: 2;
+        
+        }
+}
+
+@media (max-width: 460px) {
+    .profile__photo{
+        max-width: 57%;
+        
+        }
+}

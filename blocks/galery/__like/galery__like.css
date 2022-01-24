@@ -1,0 +1,24 @@
+.galery__like {
+    background-image: url(../../../images/like-disabled.png) ;
+    background-color: #FFFFFF;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 19px;
+    min-width: 22px;
+    border: none;
+    margin-right: 20px;
+}
+
+.galery__like:hover {
+    background-image: url(../../../images/like-hover.png);
+}
+
+/*
+.galery__like:active {
+    background-image: url(../../../images/like-activ.png);
+}
+*/
+
+.galery__like:focus {
+    background-image: url(../../../images/like-activ.png);
+}

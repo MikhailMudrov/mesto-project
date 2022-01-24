@@ -5,6 +5,13 @@
 
 @media (max-width: 768px) {
     .header__logo {
-        max-width: 36%;
+        max-width: 33%;      
+        }
+}
+
+@media (max-width: 460px) {
+    .header__logo {        
+        padding-top: 28px;
+        padding-left: 27px;       
         }
 }

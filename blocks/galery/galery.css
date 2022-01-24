@@ -1,0 +1,12 @@
+.galery {
+    max-width: 100%;
+    padding-top: 51px;
+    
+}
+
+@media (max-width: 540px) {
+    .galery {
+    max-width: 100%;
+    padding-top: 36px;    
+    }
+}

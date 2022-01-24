@@ -1,0 +1,21 @@
+.profile__subtitle {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    margin: 0;
+    padding-top: 5px;
+}
+
+
+@media (max-width: 768px) {
+    .profile__subtitle {
+        grid-row-start: 3;
+        grid-column-start: 1;
+        font-size: 14px;
+        line-height: 17px;
+        
+        }
+}
