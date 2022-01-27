@@ -3,19 +3,7 @@
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
-    max-width: 32%;
+    max-width: 282px;
     display: flex;
     flex-direction: column;
-}
-
-@media (max-width: 768px) {
-    .galery__item {
-        max-width: 49%;
-    }
-}
- 
-@media (max-width: 540px) {
-    .galery__item {
-        max-width: 100%;    
-    }
 }

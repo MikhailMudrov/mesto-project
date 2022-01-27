@@ -13,7 +13,7 @@
         }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 600px) {
     .profile__photo{
         max-width: 57%;
         

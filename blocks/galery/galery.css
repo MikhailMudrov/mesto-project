@@ -1,10 +1,10 @@
 .galery {
     max-width: 100%;
-    padding-top: 51px;
+    padding-top: 48px;
     
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
     .galery {
         max-width: 100%;
         padding-top: 36px;    

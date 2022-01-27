@@ -28,8 +28,3 @@
         }
 }
 
-@media (max-width: 460px) {
-    .profile__title {
-        padding-top: 22px;
-        }
-}

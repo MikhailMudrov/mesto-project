@@ -1,11 +1,14 @@
 .profile__add-button {
     margin-top: 35px;
     border: 2px #FFFFFF solid;
-    background-image: url(../../../images/profile-add-button.png);
-    min-height: 46px;
-    min-width: 146px;
+    background-image: url(../../../images/profile-add-button.svg);
+    min-height: 50px;
+    min-width: 150px;
     background-repeat: no-repeat;
     background-position: center;
+    background-color: #000000;
+    cursor: pointer;
+    transition: linear .5s;
 }
 
 .profile__add-button:hover {
@@ -14,14 +17,16 @@
 
 @media (max-width: 768px) {
     .profile__add-button {
-        min-width: 100%;
+        min-width: 90%;
         margin-top: 36px;
-        }
+        
+    }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 600px) {
     .profile__add-button {
-        min-width: 87%;        
+        min-width: 87%;
         background-size: 5%;
-        }
+        margin-top: 31px;
+    }
 }

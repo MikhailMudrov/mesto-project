@@ -1,5 +1,5 @@
 .galery__like {
-    background-image: url(../../../images/like-disabled.png) ;
+    background-image: url(../../../images/like-disabled.svg);
     background-color: #FFFFFF;
     background-position: center;
     background-repeat: no-repeat;
@@ -7,13 +7,16 @@
     min-width: 22px;
     border: none;
     margin-right: 20px;
+    cursor: pointer;
+    transition: linear .5s;
 }
 
 .galery__like:hover {
-    background-image: url(../../../images/like-hover.png);
+    opacity: .5;
 }
 
 
 .galery__like:active {
-    background-image: url(../../../images/like-activ.png);
+    background-image: url(../../../images/like-activ.svg);
+    opacity: 1;
 }

@@ -1,5 +1,15 @@
 .profile__edit-button {
-    padding-top: 37px;
+    margin-top: 36px;
+    background-image: url(../../../images/profile-edit-button.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: #000000;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: linear .5s;
 }
 
 .profile__edit-button:hover {
@@ -8,21 +18,23 @@
 
 @media (max-width: 1024px) {
     .profile__edit-button {
-        padding-top: 30px;
-        }
+        margin-top: 30px;
+    }
 }
 
 @media (max-width: 768px) {
     .profile__edit-button {
         grid-row-start: 2;
         grid-column-start: 2;
-        }
+    }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 600px) {
     .profile__edit-button {
-        max-width: 34%;
-        padding-right: 38px;
-        padding-top: 24px;
-        }
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        margin-right: 38px;
+        margin-top: 31px;
+    }
 }
