@@ -10,6 +10,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 300px;
 }
 
 
@@ -19,12 +20,12 @@
         grid-column-start: 1;
         font-size: 14px;
         line-height: 17px;
-        
-        }
+    }
 }
 
 @media (max-width: 600px) {
     .profile__subtitle {
         padding-top: 12px;
-        }
+        max-width: 200px;
+    }
 }

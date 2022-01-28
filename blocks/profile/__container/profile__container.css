@@ -9,11 +9,11 @@
         grid-template-columns: 80% 20%;
         grid-template-rows: 60% 25% 15%;
         justify-items: center;
-        }
+    }
 }
 
 @media (max-width: 600px) {
     .profile__container {
         margin-left: 17%;
-        }
+    }
 }

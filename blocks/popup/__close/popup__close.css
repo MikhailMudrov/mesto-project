@@ -10,6 +10,7 @@
     background-color: rgba(0, 0, 0, 0);
     border: none;
     transition: linear .5s;
+    cursor: pointer;
 }
 
 .popup__close:hover {
