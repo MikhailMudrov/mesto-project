@@ -1,22 +1,22 @@
 .galery__like {
-    background-image: url(../../../images/like-disabled.svg);
-    background-color: #FFFFFF;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 19px;
-    min-width: 22px;
-    border: none;
-    margin-right: 20px;
-    cursor: pointer;
-    transition: linear .5s;
+  background-image: url(../../../images/like-disabled.svg);
+  background-color: #FFFFFF;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 19px;
+  min-width: 22px;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: linear .5s;
 }
 
 .galery__like:hover {
-    opacity: .5;
+  opacity: .5;
 }
 
 
 .galery__like:active {
-    background-image: url(../../../images/like-activ.svg);
-    opacity: 1;
+  background-image: url(../../../images/like-activ.svg);
+  opacity: 1;
 }

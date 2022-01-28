@@ -1,31 +1,31 @@
 .profile__title {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 42px;
-    line-height: 48px;
-    grid-row-start: 1;
-    grid-column-start: 2;
-    margin: 0;
-    padding-top: 22px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 300px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+  grid-row-start: 1;
+  grid-column-start: 2;
+  margin: 0;
+  padding-top: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 300px;
 }
 
 @media (max-width: 1024px) {
-    .profile__title {
-        font-size: 33px;
-        line-height: 38px;
-    }
+  .profile__title {
+    font-size: 33px;
+    line-height: 38px;
+  }
 }
 
 @media (max-width: 768px) {
-    .profile__title {
-        grid-row-start: 2;
-        grid-column-start: 1;
-        font-size: 27px;
-        line-height: 33px;
-        max-width: 200px;
-    }
+  .profile__title {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    font-size: 27px;
+    line-height: 33px;
+    max-width: 200px;
+  }
 }

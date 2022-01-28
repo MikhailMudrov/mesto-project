@@ -1,9 +1,9 @@
 .galery__item {
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    max-width: 282px;
-    display: flex;
-    flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  max-width: 282px;
+  display: flex;
+  flex-direction: column;
 }
