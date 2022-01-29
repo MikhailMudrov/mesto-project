@@ -24,7 +24,6 @@
 
 @media (max-width: 600px) {
   .profile__subtitle {
-    padding-top: 12px;
     max-width: 200px;
   }
 }

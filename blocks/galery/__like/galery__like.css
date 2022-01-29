@@ -19,4 +19,5 @@
 .galery__like:active {
   background-image: url(../../../images/like-activ.svg);
   opacity: 1;
+  transition: none;
 }
