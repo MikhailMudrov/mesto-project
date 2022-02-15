@@ -1,15 +1,23 @@
 'use strict';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup');
-const popupCloseButton = document.querySelector('.popup__close');
+const popupProfile = document.querySelector('#popupProfile');
+const profileCloseButton = document.querySelector('#profileClose');
+
+const galeryAddButton = document.querySelector('.profile__add-button');
+const popupGalery = document.querySelector('#popupGalery');
+const galeryCloseButton = document.querySelector('#galeryClose');
+
 //Открытие закрытие попапа
-function popupOpenClose(popupClass) {
-  popupClass.classList.toggle('popup_opened');
+function popupOpenClose(popupId) {
+  popupId.classList.toggle('popup_opened');
 };
 
 profileEditButton.addEventListener('click', function () { popupOpenClose(popupProfile) });
-popupCloseButton.addEventListener('click', function () { popupOpenClose(popupProfile) });
+profileCloseButton.addEventListener('click', function () { popupOpenClose(popupProfile) });
+
+galeryAddButton.addEventListener('click', function () { popupOpenClose(popupGalery) });
+galeryCloseButton.addEventListener('click', function () { popupOpenClose(popupGalery) });
 
 
 
@@ -80,5 +88,7 @@ initialCards.forEach(function (element) {
 
   galeryContainer.append(galeryElement)
 })
+
+
 
 
