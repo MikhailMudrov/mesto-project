@@ -1,5 +1,5 @@
 .galery__image {
-  max-width: 100%;
-  min-width: 50%;
+  width: 282px;
+  height: 282px;
   object-fit: cover;
 }

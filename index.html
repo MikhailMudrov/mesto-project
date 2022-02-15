@@ -31,7 +31,7 @@
 
     <section class="galery">
       <ul class="galery__list">
-        <li class="galery__item">
+        <!--<li class="galery__item">
           <img class="galery__image" src="./images/galery-karachaevsk.jpg" alt="Старинное сооружение на фоне гор">
           <div class="galery__container">
             <h2 class="galery__title">Карачаевск</h2>
@@ -72,7 +72,7 @@
             <h2 class="galery__title">Карачаево-Черкесия</h2>
             <button class="galery__like" type="button"></button>
           </div>
-        </li>
+        </li>-->
       </ul>
 
     </section>
@@ -94,8 +94,30 @@
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
     </div>
-
   </div>
+  <div class="popup">
+    <!-- popup_opened -->
+    <div class="popup__container">
+      <button class="popup__close" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="place">
+        <input class="popup__item" type="text" name="imageTitle" id="imageTitle" placeholder="Название">
+        <input class="popup__item" type="text" name="imageLink" id="imageLink" placeholder="Ссылка на картинку">
+        <button class="popup__button" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <template id="galeryItem">
+    <li class="galery__item">
+      <img class="galery__image" src="" alt="">
+      <div class="galery__container">
+        <h2 class="galery__title"></h2>
+        <button class="galery__like" type="button"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./js/script.js"></script>
 </body>
 

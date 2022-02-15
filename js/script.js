@@ -1,9 +1,9 @@
 'use strict';
-//Открытие закрытие попапа
+
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__close');
-
+//Открытие закрытие попапа
 function popupOpenClose(popupClass) {
   popupClass.classList.toggle('popup_opened');
 };
@@ -38,5 +38,47 @@ function actualizationForm() {
 profileEditButton.addEventListener('click', actualizationForm);
 
 
+//Галерея
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const galeryContainer = document.querySelector('.galery__list')
+const galeryTemplate = document.querySelector('#galeryItem').content;
+
+// Добавление катрочек из массива
+initialCards.forEach(function (element) {
+
+  const galeryElement = galeryTemplate.cloneNode(true);
+
+  galeryElement.querySelector('.galery__title').textContent = element.name
+  galeryElement.querySelector('.galery__image').src = element.link
+  galeryElement.querySelector('.galery__image').alt = element.name
+
+  galeryContainer.append(galeryElement)
+})
 
 

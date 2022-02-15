@@ -22,7 +22,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 610px) {
   .profile__subtitle {
     max-width: 200px;
   }
