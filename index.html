@@ -100,10 +100,10 @@
     <div class="popup__container">
       <button class="popup__close" type="button" id="galeryClose"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="place">
+      <form class="popup__form" name="place" id="galeryForm">
         <input class="popup__item" type="text" name="imageTitle" id="imageTitle" placeholder="Название">
         <input class="popup__item" type="text" name="imageLink" id="imageLink" placeholder="Ссылка на картинку">
-        <button class="popup__button" type="submit">Создать</button>
+        <button class="popup__button" type="submit" id="addButton">Создать</button>
       </form>
     </div>
   </div>
@@ -115,6 +115,7 @@
         <h2 class="galery__title"></h2>
         <button class="galery__like" type="button"></button>
       </div>
+      <button class="galery__delete-button" type="button" id="delButton"></button>
     </li>
   </template>
 

@@ -14,10 +14,3 @@
 .galery__like:hover {
   opacity: .5;
 }
-
-
-.galery__like:active {
-  background-image: url(../../../images/like-activ.svg);
-  opacity: 1;
-  transition: none;
-}

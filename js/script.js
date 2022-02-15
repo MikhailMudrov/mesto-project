@@ -74,21 +74,76 @@ const initialCards = [
   }
 ];
 
-const galeryContainer = document.querySelector('.galery__list')
+const galeryContainer = document.querySelector('.galery__list');
 const galeryTemplate = document.querySelector('#galeryItem').content;
+const deleteButton = document.querySelector('#delButton');
 
 // Добавление катрочек из массива
 initialCards.forEach(function (element) {
 
   const galeryElement = galeryTemplate.cloneNode(true);
 
-  galeryElement.querySelector('.galery__title').textContent = element.name
-  galeryElement.querySelector('.galery__image').src = element.link
-  galeryElement.querySelector('.galery__image').alt = element.name
+  galeryElement.querySelector('.galery__title').textContent = element.name;
+  galeryElement.querySelector('.galery__image').src = element.link;
+  galeryElement.querySelector('.galery__image').alt = element.name;
+  galeryElement.querySelector('.galery__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('galery__like_active');
+  });
 
   galeryContainer.append(galeryElement)
-})
+  //удаление элеиента
+  const galeryDel = function (evt) {
+    evt.target.closest(".galery__item").remove()
+  };
 
+  document.querySelectorAll("#delButton").forEach(function (item) {
+    item.addEventListener("click", galeryDel)
+  });
+
+
+});
+
+
+
+//Добавление карточки пользователем
+
+const cardlink = document.querySelector('#imageLink');
+const cardtitle = document.querySelector('#imageTitle');
+const galeryForm = document.querySelector('#galeryForm');
+
+function addCard(titleValue, linkValue) {
+  const galeryElement = galeryTemplate.cloneNode(true);
+
+  galeryElement.querySelector('.galery__title').textContent = titleValue;
+  galeryElement.querySelector('.galery__image').alt = titleValue;
+  galeryElement.querySelector('.galery__image').src = linkValue;
+  galeryElement.querySelector('.galery__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('galery__like_active');
+  });
+
+  galeryContainer.prepend(galeryElement)
+  //удаление элеиента
+  const galeryDel = function (evt) {
+    evt.target.closest(".galery__item").remove()
+  };
+
+  document.querySelectorAll("#delButton").forEach(function (item) {
+    item.addEventListener("click", galeryDel)
+  });
+}
+
+function galerySubmitHandler(evt) {
+  evt.preventDefault();
+  {
+    addCard(cardtitle.value, cardlink.value);
+
+    cardlink.value = '';
+    cardtitle.value = '';
+  }
+}
+
+galeryForm.addEventListener('submit', galerySubmitHandler);
+galeryForm.addEventListener('submit', function () { popupOpenClose(popupGalery) });
 
 
 
