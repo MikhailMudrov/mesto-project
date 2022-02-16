@@ -25,8 +25,8 @@ galeryCloseButton.addEventListener('click', function () { popupOpenClose(popupGa
 const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#about');
-let title = document.querySelector('.profile__title');
-let subtitle = document.querySelector('.profile__subtitle');
+const title = document.querySelector('.profile__title');
+const subtitle = document.querySelector('.profile__subtitle');
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -77,6 +77,7 @@ const initialCards = [
 const galeryContainer = document.querySelector('.galery__list');
 const galeryTemplate = document.querySelector('#galeryItem').content;
 const deleteButton = document.querySelector('#delButton');
+const imagePopupClose = document.querySelector('.image-popup__close')
 
 // Добавление катрочек из массива
 initialCards.forEach(function (element) {
@@ -90,8 +91,8 @@ initialCards.forEach(function (element) {
     evt.target.classList.toggle('galery__like_active');
   });
 
-  galeryContainer.append(galeryElement)
-  //удаление элеиента
+  galeryContainer.prepend(galeryElement)
+  //удаление элемента
   const galeryDel = function (evt) {
     evt.target.closest(".galery__item").remove()
   };
@@ -100,7 +101,27 @@ initialCards.forEach(function (element) {
     item.addEventListener("click", galeryDel)
   });
 
+  const galeryImage = document.querySelector('.galery__image');
+  const imagePopup = document.querySelector('#imagePopup')
 
+
+  function openImagePopup(popupId) {
+    popupId.classList.add('image-popup_opened');
+  };
+  function closeImagePopup(popupId) {
+    popupId.classList.remove('image-popup_opened');
+  };
+
+  const popupImage = document.querySelector('.image-popup__picture')
+  const imageText = document.querySelector('.image-popup__text')
+  const galerytext = document.querySelector('.galery__title')
+  function addImageInPopup(imageValue, textValue) {
+    popupImage.src = imageValue;
+    popupImage.alt = textValue;
+    imageText.textContent = textValue;
+  }
+  galeryImage.addEventListener('click', function () { openImagePopup(imagePopup) }, addImageInPopup(galeryImage, galerytext));
+  imagePopupClose.addEventListener('click', function () { closeImagePopup(imagePopup) });
 });
 
 
@@ -122,6 +143,21 @@ function addCard(titleValue, linkValue) {
   });
 
   galeryContainer.prepend(galeryElement)
+
+  const galeryImage = document.querySelector('.galery__image');
+  const imagePopup = document.querySelector('#imagePopup')
+
+
+  function openImagePopup(popupId) {
+    popupId.classList.add('image-popup_opened');
+  };
+  function closeImagePopup(popupId) {
+    popupId.classList.remove('image-popup_opened');
+  };
+
+  galeryImage.addEventListener('click', function () { openImagePopup(imagePopup) });
+  imagePopupClose.addEventListener('click', function () { closeImagePopup(imagePopup) });
+
   //удаление элеиента
   const galeryDel = function (evt) {
     evt.target.closest(".galery__item").remove()
@@ -130,6 +166,7 @@ function addCard(titleValue, linkValue) {
   document.querySelectorAll("#delButton").forEach(function (item) {
     item.addEventListener("click", galeryDel)
   });
+
 }
 
 function galerySubmitHandler(evt) {
@@ -144,6 +181,9 @@ function galerySubmitHandler(evt) {
 
 galeryForm.addEventListener('submit', galerySubmitHandler);
 galeryForm.addEventListener('submit', function () { popupOpenClose(popupGalery) });
+
+// попап с картинкой
+
 
 
 
