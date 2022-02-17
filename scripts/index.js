@@ -3,19 +3,20 @@
 const profilePopup = document.querySelector('#popupProfile');
 const galeryPopup = document.querySelector('#popupGalery');
 const imagePopup = document.querySelector('#imagePopup');
+const galeryForm = galeryPopup.querySelector('#galeryForm')
 const profileEditButton = document.querySelector('.profile__edit-button');
 const galeryEditButton = document.querySelector('.profile__add-button');
 const galeryImage = document.querySelector('galery__image');
-const profileCloseButton = document.querySelector('#profileClose');
-const galeryCloseButton = document.querySelector('#galeryClose');
-const imageCloseButton = document.querySelector('#imageClose');
+const profileCloseButton = profilePopup.querySelector('#profileClose');
+const galeryCloseButton = galeryPopup.querySelector('#galeryClose');
+const imageCloseButton = imagePopup.querySelector('#imageClose');
 const profileTitle = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
 const profileForm = document.querySelector('.popup__form');
-const nameInput = document.querySelector('#name');
-const aboutInput = document.querySelector('#about');
-const ImageInPopup = document.querySelector('.popup__picture');
-const imageTextInPopup = document.querySelector('.popup__text');
+const nameInput = profilePopup.querySelector('#name');
+const aboutInput = profilePopup.querySelector('#about');
+const imageInPopup = imagePopup.querySelector('.popup__picture');
+const imageTextInPopup = imagePopup.querySelector('.popup__text');
 const galeryTemplate = document.querySelector('#galeryTemplate').content;
 const galeryContainer = document.querySelector('.galery__list');
 const cardTitle = document.querySelector('#imageTitle');
@@ -57,17 +58,21 @@ function closePopup(popupId) {
   popupId.classList.remove('popup_opened');
 };
 //функфия редактирования формы
-function formSubmitHandler(evt) {
+function submitFormHandler(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
 }
-
 //Функция актуализации формы профиля
 function actualizationForm() {
-  document.querySelector('#name').value = profileTitle.textContent;
-  document.querySelector('#about').value = profileAbout.textContent;
+  nameInput.value = profileTitle.textContent;
+  aboutInput.value = profileAbout.textContent;
 }
+//Функция очистки формы
+function clearForm(formId) {
+  formId.reset();
+}
+
 
 //Функция создания карточки
 function addCard(name, link) {
@@ -90,8 +95,8 @@ function addCard(name, link) {
   function addImageToPopup() {
     openPopup(imagePopup);
 
-    ImageInPopup.src = link;
-    ImageInPopup.alt = name;
+    imageInPopup.src = link;
+    imageInPopup.alt = name;
     imageTextInPopup.textContent = name;
   }
   //Открыть попап галереи
@@ -103,28 +108,29 @@ galeryPopup.addEventListener('submit', function (evt) {
   evt.preventDefault();
   galeryContainer.prepend(addCard(cardTitle.value, cardLink.value));
 
-  cardLink.value = '';
-  cardTitle.value = '';
+  clearForm(galeryForm)
 
   closePopup(galeryPopup)
 })
 
-//Открыть попап профиля
-profileEditButton.addEventListener('click', function () { openPopup(profilePopup) });
+//Открыть попап профиля и заполнить полея
+profileEditButton.addEventListener('click', function () {
+  actualizationForm();
+  openPopup(profilePopup);
+});
 //Закрыть попап профиля
 profileCloseButton.addEventListener('click', function () { closePopup(profilePopup) });
 //Открыть попап карточек
 galeryEditButton.addEventListener('click', function () { openPopup(galeryPopup) });
-//Закрыть попап карточек
-galeryCloseButton.addEventListener('click', function () { closePopup(galeryPopup) });
-//Закрыть попап карточек прри сохранении
-
+//Закрыть попап карточек и очистить форму
+galeryCloseButton.addEventListener('click', function () {
+  clearForm(galeryForm);
+  closePopup(galeryPopup);
+});
 //Сохранение формы профиля
-profileForm.addEventListener('submit', formSubmitHandler);
+profileForm.addEventListener('submit', submitFormHandler);
 //Закрытие формы профиля при сохранении
 profileForm.addEventListener('submit', function () { closePopup(popupProfile) });
-//Актуализация формы профиля
-profileEditButton.addEventListener('click', actualizationForm);
 //добавление карточек из массива
 initialCards.forEach(function (item) { galeryContainer.prepend(addCard(item.name, item.link)) });
 //Закрыть попап картинки

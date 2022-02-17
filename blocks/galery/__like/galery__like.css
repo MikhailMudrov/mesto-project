@@ -8,7 +8,7 @@
   border: none;
   margin-right: 20px;
   cursor: pointer;
-  transition: linear .5s;
+  transition: linear .3s;
 }
 
 .galery__like:hover {

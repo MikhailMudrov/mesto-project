@@ -8,7 +8,7 @@
   background-position: center;
   background-color: #000000;
   cursor: pointer;
-  transition: linear .5s;
+  transition: linear .3s;
 }
 
 .profile__add-button:hover {

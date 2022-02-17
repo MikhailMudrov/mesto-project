@@ -9,7 +9,7 @@
   height: 24px;
   cursor: pointer;
   border: 1px solid white;
-  transition: linear .5s;
+  transition: linear .3s;
 }
 
 .profile__edit-button:hover {
