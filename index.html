@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <div class="popup" id="imagePopup">
+  <div class="popup popup_image " id="imagePopup">
     <div class="popup__image-container">
       <img class="popup__picture" src="" alt="">
       <p class="popup__text"></p>
@@ -76,11 +76,11 @@
     </div>
   </div>
 
-  <template id="galeryItem">
-    <li class="galery__item">
-      <img class="galery__image" src="" alt="">
+  <template id="galeryTemplate">
+    <li class="galery__item" id="galeryItem">
+      <img class="galery__image" src="" alt="" id="galeryImage">
       <div class="galery__container">
-        <h2 class="galery__title"></h2>
+        <h2 class="galery__title" id="galeryTitle"></h2>
         <button class="galery__like" type="button"></button>
       </div>
       <button class="galery__delete-button" type="button" id="delButton"></button>
