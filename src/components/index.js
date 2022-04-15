@@ -1,52 +1,11 @@
-'use strict';
-//Переменные
-const profilePopup = document.querySelector('#popupProfile');
-const galeryPopup = document.querySelector('#popupGalery');
-const imagePopup = document.querySelector('#imagePopup');
-const galeryForm = galeryPopup.querySelector('#galeryForm')
-const profileEditButton = document.querySelector('.profile__edit-button');
-const galeryEditButton = document.querySelector('.profile__add-button');
-const galeryImage = document.querySelector('galery__image');
-const profileCloseButton = profilePopup.querySelector('#profileClose');
-const galeryCloseButton = galeryPopup.querySelector('#galeryClose');
-const imageCloseButton = imagePopup.querySelector('#imageClose');
-const profileTitle = document.querySelector('.profile__title');
-const profileAbout = document.querySelector('.profile__subtitle');
-const profileForm = document.querySelector('.popup__form');
-const nameInput = profilePopup.querySelector('#name');
-const aboutInput = profilePopup.querySelector('#about');
-const imageInPopup = imagePopup.querySelector('.popup__picture');
-const imageTextInPopup = imagePopup.querySelector('.popup__text');
-const galeryTemplate = document.querySelector('#galeryTemplate').content;
-const galeryContainer = document.querySelector('.galery__list');
-const cardTitle = document.querySelector('#imageTitle');
-const cardLink = document.querySelector('#imageLink');
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import '../pages/index.css'; // добавьте импорт главного файла стилей
+import {
+  profilePopup, galeryPopup, imagePopup, galeryForm,
+  profileEditButton, galeryEditButton, profileCloseButton,
+  galeryCloseButton, imageCloseButton, profileTitle, profileAbout,
+  profileForm, nameInput, aboutInput, imageInPopup, imageTextInPopup,
+  galeryTemplate, galeryContainer, cardTitle, cardLink, initialCards
+} from './variables.js'
 
 //Функция открыть попап
 function openPopup(popupId) {
@@ -72,12 +31,12 @@ function actualizationForm() {
 function clearForm(formId) {
   formId.reset();
 }
-
+const galeryElement = galeryTemplate.cloneNode(true);
+const galeryImage = galeryElement.querySelector('#galeryImage');
 
 //Функция создания карточки
 function addCard(name, link) {
-  const galeryElement = galeryTemplate.cloneNode(true);
-  const galeryImage = galeryElement.querySelector('#galeryImage');
+
   galeryElement.querySelector('#galeryTitle').textContent = name;
   galeryImage.setAttribute('src', link);
   galeryImage.setAttribute('alt', name);
