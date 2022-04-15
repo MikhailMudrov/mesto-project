@@ -31,12 +31,12 @@ function actualizationForm() {
 function clearForm(formId) {
   formId.reset();
 }
-const galeryElement = galeryTemplate.cloneNode(true);
-const galeryImage = galeryElement.querySelector('#galeryImage');
+
 
 //Функция создания карточки
 function addCard(name, link) {
-
+  const galeryElement = galeryTemplate.cloneNode(true);
+  const galeryImage = galeryElement.querySelector('#galeryImage');
   galeryElement.querySelector('#galeryTitle').textContent = name;
   galeryImage.setAttribute('src', link);
   galeryImage.setAttribute('alt', name);
