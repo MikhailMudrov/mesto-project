@@ -3,7 +3,7 @@ import {
   profilePopup, galeryPopup, imagePopup, galeryForm,
   profileEditButton, galeryEditButton, profileCloseButton,
   galeryCloseButton, imageCloseButton, profileForm, galeryContainer,
-  cardTitle, cardLink, validationOptions
+  cardTitle, cardLink, validationOptions, popup
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
 import { submitFormHandler, actualizationForm, clearForm } from './utils'
