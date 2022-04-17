@@ -46,10 +46,22 @@ const initialCards = [
   }
 ];
 
+const validationOptions = ({
+  formItem: '.popup__form',
+  inputItem: '.popup__item',
+  buttonClasss: '.popup__button',
+  inactiveButtonClass: 'popup__button_inactive',
+  inputErrorClass: 'popup__item-error',
+  errorClass: 'popup__input-error',
+});
+
 export {
   profilePopup, galeryPopup, imagePopup, galeryForm,
   profileEditButton, galeryEditButton, profileCloseButton,
   galeryCloseButton, imageCloseButton, profileTitle, profileAbout,
   profileForm, nameInput, aboutInput, imageInPopup, imageTextInPopup,
-  galeryTemplate, galeryContainer, cardTitle, cardLink, initialCards
+  galeryTemplate, galeryContainer, cardTitle, cardLink, initialCards,
+  validationOptions
 }
+
+

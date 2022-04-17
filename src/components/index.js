@@ -2,11 +2,13 @@ import '../pages/index.css'; //импорт главного файла стил
 import {
   profilePopup, galeryPopup, imagePopup, galeryForm,
   profileEditButton, galeryEditButton, profileCloseButton,
-  galeryCloseButton, imageCloseButton, profileForm
+  galeryCloseButton, imageCloseButton, profileForm, galeryContainer,
+  cardTitle, cardLink, validationOptions
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
 import { submitFormHandler, actualizationForm, clearForm } from './utils'
 import { addCard } from './card'
+import { validation } from './validate'
 
 
 //слушатели
@@ -30,6 +32,19 @@ profileForm.addEventListener('submit', submitFormHandler);
 profileForm.addEventListener('submit', function () { closePopup(popupProfile) });
 //Закрыть попап картинки
 imageCloseButton.addEventListener('click', function () { closePopup(imagePopup) });
+
+//Добавление карточки из формы
+galeryPopup.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  galeryContainer.prepend(addCard(cardTitle.value, cardLink.value));
+
+  clearForm(galeryForm)
+
+  closePopup(galeryPopup)
+})
+
+//Валидация форм
+validation(validationOptions);
 
 
 

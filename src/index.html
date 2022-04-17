@@ -67,14 +67,15 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="place" id="galeryForm">
         <label class="popup__field">
-          <input class="popup__item" type="text" name="imageTitle" id="imageTitle" placeholder="Название">
-          <span class="popup__input-error" id="imageName-error"></span>
+          <input required class="popup__item" type="text" name="imageTitle" id="imageTitle" placeholder="Название"
+            minlength="2" maxlength="30">
+          <span class="popup__input-error" id="imageTitle-error"></span>
         </label>
         <label class="popup__field">
-          <input class="popup__item" type="text" name="imageLink" id="imageLink" placeholder="Ссылка на картинку">
+          <input class="popup__item" type="url" name="imageLink" id="imageLink" placeholder="Ссылка на картинку">
           <span class="popup__input-error" id="imageLink-error"></span>
         </label>
-        <button class="popup__button popup__button_inactive" type="submit" id="addButton">Создать</button>
+        <button class="popup__button" type="submit" id="addButton">Создать</button>
       </form>
     </div>
   </div>

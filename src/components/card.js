@@ -36,15 +36,7 @@ export function addCard(name, link) {
   galeryImage.addEventListener('click', addImageToPopup);
   return galeryElement;
 }
-//Добавление карточки из формы
-galeryPopup.addEventListener('submit', function (evt) {
-  evt.preventDefault();
-  galeryContainer.prepend(addCard(cardTitle.value, cardLink.value));
 
-  clearForm(galeryForm)
-
-  closePopup(galeryPopup)
-})
 
 //добавление карточек из массива
 initialCards.forEach(function (item) { galeryContainer.prepend(addCard(item.name, item.link)) });
