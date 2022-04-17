@@ -3,10 +3,10 @@ import {
   profilePopup, galeryPopup, imagePopup, galeryForm,
   profileEditButton, galeryEditButton, profileCloseButton,
   galeryCloseButton, imageCloseButton, profileForm, galeryContainer,
-  cardTitle, cardLink, validationOptions, popup
+  cardTitle, cardLink, validationOptions
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
-import { submitFormHandler, actualizationForm, clearForm } from './utils'
+import { submitProfileForm, actualizationForm, clearForm } from './utils'
 import { addCard } from './card'
 import { validation } from './validate'
 
@@ -27,7 +27,7 @@ galeryCloseButton.addEventListener('click', function () {
   closePopup(galeryPopup);
 });
 //Сохранение формы профиля
-profileForm.addEventListener('submit', submitFormHandler);
+profileForm.addEventListener('submit', submitProfileForm);
 //Закрытие формы профиля при сохранении
 profileForm.addEventListener('submit', function () { closePopup(popupProfile) });
 //Закрыть попап картинки

@@ -18,12 +18,12 @@ export function closeByOverlayClick(evt) {
 export function openPopup(popupId) {
   popupId.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsk);
-  document.addEventListener('click', closeByOverlayClick)
+  document.addEventListener('mousedown', closeByOverlayClick)
 };
 
 //Функция закрыть попап
 export function closePopup(popupId) {
   popupId.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsk);
-  document.removeEventListener('click', closeByOverlayClick)
+  document.removeEventListener('mousedown', closeByOverlayClick)
 };

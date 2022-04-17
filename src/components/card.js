@@ -1,11 +1,11 @@
 import {
-  imagePopup, imageInPopup, galeryPopup,
+  imagePopup, imageInPopup,
   imageTextInPopup, galeryTemplate,
-  galeryContainer, cardTitle, cardLink,
-  initialCards
+  galeryContainer, initialCards
 } from './variables'
-import { openPopup, closePopup } from './modal';
-import { clearForm } from './utils';
+import { openPopup } from './modal';
+import { likeCard } from './utils';
+
 
 //Функция создания карточки
 export function addCard(name, link) {
@@ -16,9 +16,7 @@ export function addCard(name, link) {
   galeryImage.setAttribute('alt', name);
 
   //Подключить лайк
-  galeryElement.querySelector('.galery__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('galery__like_active');
-  })
+  galeryElement.querySelector('.galery__like').addEventListener('click', likeCard)
   //Удалить карточку
   galeryElement.querySelector('#delButton').addEventListener('click', function (evt) {
     evt.target.closest('#galeryItem').remove();
