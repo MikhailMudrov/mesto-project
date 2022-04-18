@@ -15,7 +15,3 @@ export function actualizationForm() {
 export function clearForm(formId) {
   formId.reset();
 }
-
-export function likeCard(evt) {
-  evt.target.classList.toggle('galery__like_active');
-}

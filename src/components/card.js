@@ -4,8 +4,6 @@ import {
   galeryContainer, initialCards
 } from './variables'
 import { openPopup } from './modal';
-import { likeCard } from './utils';
-
 
 //Функция создания карточки
 export function addCard(name, link) {
@@ -18,14 +16,11 @@ export function addCard(name, link) {
   //Подключить лайк
   galeryElement.querySelector('.galery__like').addEventListener('click', likeCard)
   //Удалить карточку
-  galeryElement.querySelector('#delButton').addEventListener('click', function (evt) {
-    evt.target.closest('#galeryItem').remove();
-  })
+  galeryElement.querySelector('#delButton').addEventListener('click', removeCard)
 
   //Функция добавления картинки в попап галереи
   function addImageToPopup() {
     openPopup(imagePopup);
-
     imageInPopup.src = link;
     imageInPopup.alt = name;
     imageTextInPopup.textContent = name;
@@ -34,7 +29,13 @@ export function addCard(name, link) {
   galeryImage.addEventListener('click', addImageToPopup);
   return galeryElement;
 }
-
-
+//лайк карточки
+export function likeCard(evt) {
+  evt.target.classList.toggle('galery__like_active');
+}
+//удаление карточки
+export function removeCard(evt) {
+  evt.target.closest('#galeryItem').remove();
+}
 //добавление карточек из массива
 initialCards.forEach(function (item) { galeryContainer.prepend(addCard(item.name, item.link)) });
