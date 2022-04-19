@@ -8,6 +8,7 @@ const galeryEditButton = document.querySelector('.profile__add-button');
 const profileCloseButton = profilePopup.querySelector('#profileClose');
 const galeryCloseButton = galeryPopup.querySelector('#galeryClose');
 const imageCloseButton = imagePopup.querySelector('#imageClose');
+const profileAvatar = document.querySelector('.profile__photo')
 const profileTitle = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
 const profileForm = document.querySelector('.popup__form');
@@ -54,14 +55,17 @@ const validationOptions = ({
   inputErrorClass: 'popup__item-error',
   errorClass: 'popup__input-error',
 });
+const url = 'https://nomoreparties.co/v1/plus-cohort-9/'
+const token = '216df393-80a6-469f-9917-af68970bf2f0'
+
 
 export {
   profilePopup, galeryPopup, imagePopup, galeryForm,
   profileEditButton, galeryEditButton, profileCloseButton,
-  galeryCloseButton, imageCloseButton, profileTitle, profileAbout,
+  galeryCloseButton, imageCloseButton, profileAvatar, profileTitle, profileAbout,
   profileForm, nameInput, aboutInput, imageInPopup, imageTextInPopup,
   galeryTemplate, galeryContainer, cardTitle, cardLink, initialCards,
-  validationOptions
+  validationOptions, url, token
 }
 
 

@@ -1,16 +1,15 @@
 import '../pages/index.css'; //импорт главного файла стилей
 import {
   profilePopup, galeryPopup, imagePopup, galeryForm,
-  profileEditButton, galeryEditButton, profileCloseButton,
-  galeryCloseButton, imageCloseButton, profileForm, galeryContainer,
-  cardTitle, cardLink, validationOptions
+  profileEditButton, galeryEditButton, profileCloseButton, profileAvatar,
+  profileTitle, profileAbout, galeryCloseButton, imageCloseButton,
+  profileForm, galeryContainer, cardTitle, cardLink, validationOptions
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
 import { submitProfileForm, actualizationForm, clearForm } from './utils'
 import { addCard } from './card'
 import { validation } from './validate'
 import { getProfileData, getCadrsData } from './api'
-
 
 //слушатели
 //Открыть попап профиля и заполнить полея
@@ -46,9 +45,25 @@ galeryPopup.addEventListener('submit', function (evt) {
 
 //Валидация форм
 validation(validationOptions);
-getProfileData()
-getCadrsData()
 
 
 
-
+//Загрузка данных профиля с сервера
+const profileInfo = () => {
+  profileAvatar.src = 'https://pear-advert.ru/images/uploads/blog/273/30.gif';
+  profileTitle.textContent = 'Загрузка...';
+  profileAbout.textContent = 'В процессе...';
+  getProfileData()
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+      profileTitle.textContent = data.name;
+      profileAbout.textContent = data.about;
+    })
+    .catch((err) => {
+      profileAvatar.src = 'https://e7.pngegg.com/pngimages/876/887/png-clipart-computer-icons-others-miscellaneous-angle.png';
+      profileTitle.textContent = 'Эээх...';
+      profileAbout.textContent = 'Все сломалось =(...';
+      console.log(err)
+    })
+}
+profileInfo()

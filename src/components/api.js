@@ -1,8 +1,10 @@
+import { url, token } from "./variables";
+
 // получаем данные профиля
 const getProfileData = () => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-9/users/me', {
+  return fetch(url + 'users/me', {
     headers: {
-      authorization: '216df393-80a6-469f-9917-af68970bf2f0',
+      authorization: token,
       'Content-Type': 'application/json'
     }
   })
@@ -12,19 +14,13 @@ const getProfileData = () => {
       }
       return Promise.reject(`Что-то пошло не так: ${res.status}`);
     })
-    .then((data) => {
-      console.log(data.name)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 }
 
 //получаем карточки
 const getCadrsData = () => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-9/cards', {
+  return fetch(url + 'cards', {
     headers: {
-      authorization: '216df393-80a6-469f-9917-af68970bf2f0',
+      authorization: token,
       'Content-Type': 'application/json'
     }
   })
@@ -36,9 +32,11 @@ const getCadrsData = () => {
     })
     .then((data) => {
       console.log(data)
+      return data;
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err)
+      return err;
     });
 }
 export { getProfileData, getCadrsData }
