@@ -9,7 +9,7 @@ import { openPopup, closePopup } from './modal'
 import { submitProfileForm, actualizationForm, clearForm } from './utils'
 import { addCard } from './card'
 import { validation } from './validate'
-import { getProfileData } from './api'
+import { getProfileData, getCadrsData } from './api'
 
 
 //слушатели
@@ -47,6 +47,7 @@ galeryPopup.addEventListener('submit', function (evt) {
 //Валидация форм
 validation(validationOptions);
 getProfileData()
+getCadrsData()
 
 
 

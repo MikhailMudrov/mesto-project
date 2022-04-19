@@ -1,0 +1,1 @@
+import { getProfileData } from "./api";
