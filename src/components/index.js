@@ -3,15 +3,30 @@ import {
   profilePopup, galeryPopup, imagePopup, galeryForm,
   profileEditButton, galeryEditButton, profileCloseButton, profileAvatar,
   profileTitle, profileAbout, galeryCloseButton, imageCloseButton,
-  profileForm, galeryContainer, cardTitle, cardLink, validationOptions
+  profileForm, galeryContainer, cardTitle, cardLink, validationOptions,
+  profileAvatarButton, avatarPopup, avatarCloseButton, avatarSaveButton, avatarLink,
+  loadingImage, profileErrorImage
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
-import { submitProfileForm, actualizationForm, clearForm } from './utils'
-import { addCard } from './card'
+import { submitProfileForm, actualizationForm, submitProfileAvatar } from './profile'
+import { clearForm } from './utils';
+import { addCard, newCard } from './card'
 import { validation } from './validate'
 import { getProfileData, getCadrsData } from './api'
 
 //слушатели
+//открыть попап аватара
+profileAvatarButton.addEventListener('click', function () {
+  openPopup(avatarPopup);
+})
+//закрыть попап аватара
+avatarCloseButton.addEventListener('click', function () {
+  closePopup(avatarPopup)
+})
+
+//обновление аватара
+avatarForm.addEventListener('submit', submitProfileAvatar)
+
 //Открыть попап профиля и заполнить полея
 profileEditButton.addEventListener('click', function () {
   actualizationForm();
@@ -43,14 +58,13 @@ galeryPopup.addEventListener('submit', function (evt) {
   closePopup(galeryPopup)
 })
 
-//Валидация форм
-validation(validationOptions);
+
 
 
 
 //Загрузка данных профиля с сервера
 const profileInfo = () => {
-  profileAvatar.src = 'https://pear-advert.ru/images/uploads/blog/273/30.gif';
+  profileAvatar.src = loadingImage;
   profileTitle.textContent = 'Загрузка...';
   profileAbout.textContent = 'В процессе...';
   getProfileData()
@@ -60,10 +74,27 @@ const profileInfo = () => {
       profileAbout.textContent = data.about;
     })
     .catch((err) => {
-      profileAvatar.src = 'https://e7.pngegg.com/pngimages/876/887/png-clipart-computer-icons-others-miscellaneous-angle.png';
+      profileAvatar.src = profileErrorImage;
       profileTitle.textContent = 'Эээх...';
       profileAbout.textContent = 'Все сломалось =(...';
       console.log(err)
     })
 }
 profileInfo()
+
+//Загрузка карточек с сервера
+const downloadCards = () => {
+
+  getCadrsData()
+    .then((data) => {
+      data.forEach(newCard)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+}
+downloadCards()
+
+//Валидация форм
+validation(validationOptions);

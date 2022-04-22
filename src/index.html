@@ -19,8 +19,8 @@
     <section class="profile">
       <div class="profile__container">
         <div class="profile__photo-container">
-          <img class="profile__photo" src="<%=require('./images/profile-kusto.jpg')%>"
-            alt="фото Жака-Ива Кусто извесного исследователя океана">
+          <img class="profile__photo" src="" alt="фото Жака-Ива Кусто извесного исследователя океана">
+          <button class="profile__photo-edit-button"></button>
         </div>
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <p class="profile__subtitle">Исследователь океана</p>
@@ -76,10 +76,27 @@
           <span class="popup__input-error" id="imageTitle-error"></span>
         </label>
         <label class="popup__field">
-          <input class="popup__item" type="url" name="imageLink" id="imageLink" placeholder="Ссылка на картинку">
+          <input required class="popup__item" type="url" name="imageLink" id="imageLink"
+            placeholder="Ссылка на картинку">
           <span class="popup__input-error" id="imageLink-error"></span>
         </label>
         <button class="popup__button" type="submit" id="addButton">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup" id="popupAvatar">
+    <!-- popup_opened -->
+    <div class="popup__container">
+      <button class="popup__close" type="button" id="avatarClose"></button>
+      <h2 class="popup__title">обновить аватар</h2>
+      <form class="popup__form" name="place" id="avatarForm">
+        <label class="popup__field">
+          <input required class="popup__item" type="url" name="imageLink" id="avatarLink"
+            placeholder="Ссылка на картинку">
+          <span class="popup__input-error" id="avatarLink-error"></span>
+        </label>
+        <button class="popup__button" type="submit" id="avatarSaveButton">Сохранить</button>
       </form>
     </div>
   </div>
@@ -94,7 +111,8 @@
 
   <template id="galeryTemplate">
     <li class="galery__item" id="galeryItem">
-      <img class="galery__image" src="" alt="" id="galeryImage">
+      <img class="galery__image" src="" alt="" id="galeryImage"
+        onerror="this.onerror=null;this.src='<%=require('./images/galery-error-image.jpg')%>';">
       <div class="galery__container">
         <h2 class="galery__title" id="galeryTitle"></h2>
         <button class="galery__like" type="button"></button>

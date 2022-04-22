@@ -38,4 +38,7 @@ export function removeCard(evt) {
   evt.target.closest('#galeryItem').remove();
 }
 //добавление карточек из массива
-initialCards.forEach(function (item) { galeryContainer.prepend(addCard(item.name, item.link)) });
+export function newCard(item) {
+  galeryContainer.prepend(addCard(item.name, item.link))
+}
+/* initialCards.forEach(newCard); */
