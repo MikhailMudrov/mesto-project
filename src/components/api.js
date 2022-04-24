@@ -34,7 +34,7 @@ const getCadrsData = () => {
 
 //отправляем новый аватар
 const changeAvatar = (url) => {
-  return fetch(apiUrl + '/users/me/avatar', {
+  return fetch(apiUrl + 'users/me/avatar', {
     method: 'PATCH',
     headers: {
       authorization: token,
@@ -52,7 +52,7 @@ const changeAvatar = (url) => {
 
 // Отправляем изменения профиля
 const updateProfileData = (data) => {
-  return fetch(apiUrl + '/users/me', {
+  return fetch(apiUrl + 'users/me', {
     method: 'PATCH',
     headers: {
       authorization: token,
@@ -71,4 +71,25 @@ const updateProfileData = (data) => {
     })
 }
 
-export { getProfileData, getCadrsData, changeAvatar, updateProfileData }
+// постим новую карточку
+const postNewCard = (card) => {
+  return fetch(apiUrl + 'cards', {
+    method: 'POST',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: card.name,
+      link: card.link
+    })
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    })
+}
+
+export { getProfileData, getCadrsData, changeAvatar, updateProfileData, postNewCard }

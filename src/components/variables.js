@@ -10,6 +10,8 @@ const profileCloseButton = profilePopup.querySelector('#profileClose');
 const avatarCloseButton = document.querySelector('#avatarClose')
 const galeryCloseButton = galeryPopup.querySelector('#galeryClose');
 const imageCloseButton = imagePopup.querySelector('#imageClose');
+const galeryAddButton = galeryPopup.querySelector('#addButton')
+/* const galeryDelButton = document.querySelector('#delButton') */
 const profileAvatar = document.querySelector('.profile__photo')
 const profileAvatarButton = document.querySelector('.profile__photo-edit-button')
 const avatarSaveButton = document.querySelector('#avatarSaveButton')
@@ -66,8 +68,8 @@ const validationOptions = ({
   inputErrorClass: 'popup__item-error',
   errorClass: 'popup__input-error',
 });
-const apiUrl = 'https://nomoreparties.co/v1/plus-cohort-9/'
-const token = '216df393-80a6-469f-9917-af68970bf2f0'
+const apiUrl = 'https://nomoreparties.co/v1/plus-cohort-9/';
+const token = '216df393-80a6-469f-9917-af68970bf2f0';
 
 
 export {
@@ -77,7 +79,8 @@ export {
   profileTitle, profileAbout, profileForm, nameInput, aboutInput,
   imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
   validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton
+  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton,
+  galeryAddButton
 }
 
 

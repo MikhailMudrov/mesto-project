@@ -18,7 +18,7 @@ export function actualizationForm() {
   nameInput.value = profileTitle.textContent;
   aboutInput.value = profileAbout.textContent;
 }
-
+export let user;
 //Загрузка данных профиля с сервера
 export const profileInfo = () => {
   profileAvatar.src = loadingImage;
@@ -29,6 +29,7 @@ export const profileInfo = () => {
       profileAvatar.src = data.avatar;
       profileTitle.textContent = data.name;
       profileAbout.textContent = data.about;
+      let user = data;
     })
     .catch((err) => {
       profileAvatar.src = profileErrorImage;
@@ -59,6 +60,8 @@ export function submitProfileAvatar(evt) {
 export function submitProfileForm(evt) {
   evt.preventDefault()
   profileSaveButton.textContent = 'Сохранение...'
+  profileTitle.textContent = 'Загрузка...';
+  profileAbout.textContent = 'В процессе...';
 
   const data = {
     name: nameInput.value,
