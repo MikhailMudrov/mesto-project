@@ -18,6 +18,7 @@ const avatarForm = document.querySelector('#avatarForm')
 const profileTitle = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
 const profileForm = document.querySelector('.popup__form');
+const profileSaveButton = document.querySelector('#profileSaveButton')
 const nameInput = profilePopup.querySelector('#name');
 const aboutInput = profilePopup.querySelector('#about');
 const imageInPopup = imagePopup.querySelector('.popup__picture');
@@ -29,6 +30,7 @@ const cardLink = document.querySelector('#imageLink');
 const loadingImage = new URL('../images/loading.gif', import.meta.url);
 const galeryErrorImage = new URL('../images/galery-error-image.jpg', import.meta.url)
 const profileErrorImage = new URL('../images/error.png', import.meta.url)
+
 /* const initialCards = [
   {
     name: 'Архыз',
@@ -75,7 +77,7 @@ export {
   profileTitle, profileAbout, profileForm, nameInput, aboutInput,
   imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
   validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage
+  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton
 }
 
 

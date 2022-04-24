@@ -1,21 +1,42 @@
-import { profileTitle, profileAbout, nameInput, aboutInput, avatarLink, avatarForm, profileAvatar } from "./variables";
-import { changeAvatar } from "./api";
+import {
+  profilePopup, galeryPopup, imagePopup, galeryForm,
+  profileEditButton, galeryEditButton, profileCloseButton,
+  galeryCloseButton, imageCloseButton, profileAvatar, profileAvatarButton,
+  profileTitle, profileAbout, profileForm, nameInput, aboutInput,
+  imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
+  validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
+  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton
+} from "./variables";
+import { getProfileData, changeAvatar, updateProfileData } from './api'
 import { closePopup } from "./modal";
 import { clearForm } from "./utils";
 
-//функфия редактирования формы
-export function submitProfileForm(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
-}
+
+
 //Функция актуализации формы профиля
 export function actualizationForm() {
   nameInput.value = profileTitle.textContent;
   aboutInput.value = profileAbout.textContent;
 }
 
-
+//Загрузка данных профиля с сервера
+export const profileInfo = () => {
+  profileAvatar.src = loadingImage;
+  profileTitle.textContent = 'Загрузка...';
+  profileAbout.textContent = 'В процессе...';
+  getProfileData()
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+      profileTitle.textContent = data.name;
+      profileAbout.textContent = data.about;
+    })
+    .catch((err) => {
+      profileAvatar.src = profileErrorImage;
+      profileTitle.textContent = 'Эээх...';
+      profileAbout.textContent = 'Все сломалось =(...';
+      console.log(err)
+    })
+}
 
 // Обработка формы аватара
 export function submitProfileAvatar(evt) {
@@ -32,4 +53,24 @@ export function submitProfileAvatar(evt) {
     .finally(() => avatarSaveButton.textContent = 'Сохранить')
 }
 
+
+
+// Обработка формы профиля
+export function submitProfileForm(evt) {
+  evt.preventDefault()
+  profileSaveButton.textContent = 'Сохранение...'
+
+  const data = {
+    name: nameInput.value,
+    about: aboutInput.value
+  }
+
+  updateProfileData(data)
+    .then(res => {
+      profileTitle.textContent = res.name;
+      profileAbout.textContent = res.about;
+    })
+    .catch(err => console.log(err))
+    .finally(() => profileSaveButton.textContent = 'Сохранить')
+}
 

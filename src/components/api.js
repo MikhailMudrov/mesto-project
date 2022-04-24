@@ -32,7 +32,7 @@ const getCadrsData = () => {
     })
 }
 
-// Смена аватара
+//отправляем новый аватар
 const changeAvatar = (url) => {
   return fetch(apiUrl + '/users/me/avatar', {
     method: 'PATCH',
@@ -50,4 +50,25 @@ const changeAvatar = (url) => {
     })
 }
 
-export { getProfileData, getCadrsData, changeAvatar }
+// Отправляем изменения профиля
+const updateProfileData = (data) => {
+  return fetch(apiUrl + '/users/me', {
+    method: 'PATCH',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: data.name,
+      about: data.about
+    })
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    })
+}
+
+export { getProfileData, getCadrsData, changeAvatar, updateProfileData }

@@ -5,33 +5,35 @@ import {
   profileTitle, profileAbout, galeryCloseButton, imageCloseButton,
   profileForm, galeryContainer, cardTitle, cardLink, validationOptions,
   profileAvatarButton, avatarPopup, avatarCloseButton, avatarSaveButton, avatarLink,
-  loadingImage, profileErrorImage
+  loadingImage, profileErrorImage, profileSaveButton
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
-import { submitProfileForm, actualizationForm, submitProfileAvatar } from './profile'
+import { submitProfileForm, actualizationForm, submitProfileAvatar, profileInfo } from './profile'
 import { clearForm } from './utils';
 import { addCard, newCard } from './card'
 import { validation } from './validate'
 import { getProfileData, getCadrsData } from './api'
+import { downloadCards } from './card'
 
 //слушатели
 //открыть попап аватара
 profileAvatarButton.addEventListener('click', function () {
   openPopup(avatarPopup);
-})
+});
+
 //закрыть попап аватара
 avatarCloseButton.addEventListener('click', function () {
   closePopup(avatarPopup)
-})
+});
 
 //обновление аватара
 avatarForm.addEventListener('submit', submitProfileAvatar)
-
 //Открыть попап профиля и заполнить полея
 profileEditButton.addEventListener('click', function () {
   actualizationForm();
   openPopup(profilePopup);
 });
+
 //Закрыть попап профиля
 profileCloseButton.addEventListener('click', function () { closePopup(profilePopup) });
 //Открыть попап карточек
@@ -41,6 +43,7 @@ galeryCloseButton.addEventListener('click', function () {
   clearForm(galeryForm);
   closePopup(galeryPopup);
 });
+
 //Сохранение формы профиля
 profileForm.addEventListener('submit', submitProfileForm);
 //Закрытие формы профиля при сохранении
@@ -56,44 +59,12 @@ galeryPopup.addEventListener('submit', function (evt) {
   clearForm(galeryForm)
 
   closePopup(galeryPopup)
-})
+});
 
-
-
-
-
-//Загрузка данных профиля с сервера
-const profileInfo = () => {
-  profileAvatar.src = loadingImage;
-  profileTitle.textContent = 'Загрузка...';
-  profileAbout.textContent = 'В процессе...';
-  getProfileData()
-    .then((data) => {
-      profileAvatar.src = data.avatar;
-      profileTitle.textContent = data.name;
-      profileAbout.textContent = data.about;
-    })
-    .catch((err) => {
-      profileAvatar.src = profileErrorImage;
-      profileTitle.textContent = 'Эээх...';
-      profileAbout.textContent = 'Все сломалось =(...';
-      console.log(err)
-    })
-}
+//загружаем данные прлфиля при открытии страницы
 profileInfo()
 
-//Загрузка карточек с сервера
-const downloadCards = () => {
-
-  getCadrsData()
-    .then((data) => {
-      data.forEach(newCard)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-
-}
+//загружаем данные карточек при открытии страницы
 downloadCards()
 
 //Валидация форм
