@@ -5,26 +5,27 @@ import {
   profileTitle, profileAbout, profileForm, nameInput, aboutInput,
   imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
   validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, galeryAddButton
+  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, galeryAddButton, deletePopup
 } from './variables';
 import { openPopup, closePopup } from './modal';
-import { getCadrsData, postNewCard, getProfileData } from './api';
+import { getCadrsData, postNewCard, getProfileData, deleteCard } from './api';
 import { clearForm } from './utils';
 /* import { profileInfo } from './profile'; */
 
 //Функция создания карточки
-export function addCard(name, link) {
+export function addCard(name, link, _id) {
   const galeryElement = galeryTemplate.cloneNode(true);
   const galeryImage = galeryElement.querySelector('#galeryImage');
   galeryElement.querySelector('#galeryTitle').textContent = name;
   galeryImage.setAttribute('src', link);
   galeryImage.setAttribute('alt', name);
-
+  galeryImage.setAttribute('data-id', _id)
 
   //Подключить лайк
   galeryElement.querySelector('.galery__like').addEventListener('click', likeCard)
-  //Удалить карточку
-  galeryElement.querySelector('#delButton').addEventListener('click', removeCard)
+  /*
+    //Удалить карточку
+    galeryElement.querySelector('#delButton').addEventListener('click', requestsDeleteCard) */
 
   //Функция добавления картинки в попап галереи
   function addImageToPopup() {
@@ -41,27 +42,28 @@ export function addCard(name, link) {
 export function likeCard(evt) {
   evt.target.classList.toggle('galery__like_active');
 }
+
 //удаление карточки
 export function removeCard(evt) {
   evt.target.closest('#galeryItem').remove();
 }
-//добавление карточек из массива
-let user;
-
-export const profileInf = () => {
-
+//переменная с данными пользователя которая не хочет работать из файла переменных
+/* let user; */
+//наполняем переменную с данными пользователя
+/* export const profileInf = () => {
   getProfileData()
-    .then((data) => {
-      user = data;
+    .then((info) => {
+      user = info;
       console.log(user)
     })
     .catch((err) => {
       console.log(err)
     })
 }
-profileInf()
-export function newCard(item) {
-  galeryContainer.prepend(addCard(item.name, item.link));
+profileInf() */
+
+/* export function newCard(item) {
+  galeryContainer.prepend(addCard(item.name, item.link, item._id));
   const galeryDelButton = document.querySelector('#delButton');
   if (item.owner._id !== user._id) {
     galeryDelButton.classList.add('galery__delete-button_hide')
@@ -73,7 +75,6 @@ export const downloadCards = () => {
   getCadrsData()
     .then((data) => {
       data.forEach(newCard);
-
     })
     .catch((err) => {
       console.log(err)
@@ -85,12 +86,11 @@ export const downloadCards = () => {
 export function submitCardForm(evt) {
   evt.preventDefault()
   galeryAddButton.textContent = 'Загрузка...'
-
   const cardData = {
     name: cardTitle.value,
     link: cardLink.value
   }
-
+  //добавляем новую карточку
   postNewCard(cardData)
     .then(res => {
       galeryContainer.prepend(addCard(res.name, res.link));
@@ -99,12 +99,28 @@ export function submitCardForm(evt) {
     })
     .catch(err => console.log(err))
     .finally(() => galeryAddButton.textContent = 'Добавить')
-}
-/*
-// Проверка владельца карточки
-export function checkCardOwner(card, user, galeryDelButton) {
-  if (card.owner._id !== user._id) {
-    galeryDelButton.style.display = 'none';
-  }
 } */
 
+/* // Обработка удаления карточки
+export function requestsDeleteCard(evt) {
+  openPopup(deletePopup)
+
+  const card = evt.target.closest('#galeryItem')
+  const id = card.getAttribute('data-id')
+
+  deletePopup.setAttribute('data-id', id)
+  console.log(id)
+} */
+
+// Функция отправки удаления карточки после подтверждения
+/* export function deleteCardAccept() {
+  const id = deletePopup.getAttribute('data-id')
+  const card = document.querySelector(`[data-id='${id}']`)
+
+  deleteCard(id)
+    .then(() => {
+      card.remove()
+      closePopup()
+    })
+    .catch(err => console.log(err))
+} */

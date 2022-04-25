@@ -11,7 +11,6 @@ const avatarCloseButton = document.querySelector('#avatarClose')
 const galeryCloseButton = galeryPopup.querySelector('#galeryClose');
 const imageCloseButton = imagePopup.querySelector('#imageClose');
 const galeryAddButton = galeryPopup.querySelector('#addButton')
-/* const galeryDelButton = document.querySelector('#delButton') */
 const profileAvatar = document.querySelector('.profile__photo')
 const profileAvatarButton = document.querySelector('.profile__photo-edit-button')
 const avatarSaveButton = document.querySelector('#avatarSaveButton')
@@ -29,6 +28,9 @@ const galeryTemplate = document.querySelector('#galeryTemplate').content;
 const galeryContainer = document.querySelector('.galery__list');
 const cardTitle = document.querySelector('#imageTitle');
 const cardLink = document.querySelector('#imageLink');
+const deletePopup = document.querySelector('#deletePopup')
+const deletePopupClose = document.querySelector('#deletePopupClose')
+const deletePopupButton = document.querySelector('deletePopupButton')
 const loadingImage = new URL('../images/loading.gif', import.meta.url);
 const galeryErrorImage = new URL('../images/galery-error-image.jpg', import.meta.url)
 const profileErrorImage = new URL('../images/error.png', import.meta.url)
@@ -80,7 +82,7 @@ export {
   imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
   validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
   avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton,
-  galeryAddButton
+  galeryAddButton, deletePopup, deletePopupClose, deletePopupButton
 }
 
 

@@ -5,7 +5,8 @@ import {
   profileTitle, profileAbout, galeryCloseButton, imageCloseButton,
   profileForm, galeryContainer, cardTitle, cardLink, validationOptions,
   profileAvatarButton, avatarPopup, avatarCloseButton, avatarSaveButton, avatarLink,
-  loadingImage, profileErrorImage, profileSaveButton, galeryAddButton, galeryDelButton
+  loadingImage, profileErrorImage, profileSaveButton, galeryAddButton, galeryDelButton,
+  deletePopupClose, deletePopup
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
 import { submitProfileForm, actualizationForm, submitProfileAvatar, profileInfo } from './profile'
@@ -24,6 +25,10 @@ profileAvatarButton.addEventListener('click', function () {
 //закрыть попап аватара
 avatarCloseButton.addEventListener('click', function () {
   closePopup(avatarPopup)
+});
+//закрытие попапа удаления карточки
+deletePopupClose.addEventListener('click', function () {
+  closePopup(deletePopup)
 });
 
 //обновление аватара
@@ -53,12 +58,12 @@ imageCloseButton.addEventListener('click', function () { closePopup(imagePopup) 
 
 //Добавление карточки из формы
 galeryPopup.addEventListener('submit', submitCardForm)
-
+/*
 //загружаем данные прлфиля при открытии страницы
 profileInfo()
 
 //загружаем данные карточек при открытии страницы
 downloadCards()
-
+ */
 //Валидация форм
 validation(validationOptions);

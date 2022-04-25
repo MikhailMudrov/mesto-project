@@ -92,4 +92,21 @@ const postNewCard = (card) => {
     })
 }
 
+// удаляем карточки
+export const deleteCard = (id) => {
+  return fetch(apiUrl + `cards/${id}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    })
+}
+
 export { getProfileData, getCadrsData, changeAvatar, updateProfileData, postNewCard }

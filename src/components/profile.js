@@ -5,7 +5,8 @@ import {
   profileTitle, profileAbout, profileForm, nameInput, aboutInput,
   imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
   validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton
+  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton,
+  deletePopup
 } from "./variables";
 import { getProfileData, changeAvatar, updateProfileData } from './api'
 import { closePopup } from "./modal";
@@ -18,7 +19,7 @@ export function actualizationForm() {
   nameInput.value = profileTitle.textContent;
   aboutInput.value = profileAbout.textContent;
 }
-export let user;
+/* export let user;
 //Загрузка данных профиля с сервера
 export const profileInfo = () => {
   profileAvatar.src = loadingImage;
@@ -29,7 +30,7 @@ export const profileInfo = () => {
       profileAvatar.src = data.avatar;
       profileTitle.textContent = data.name;
       profileAbout.textContent = data.about;
-      let user = data;
+
     })
     .catch((err) => {
       profileAvatar.src = profileErrorImage;
@@ -76,4 +77,4 @@ export function submitProfileForm(evt) {
     .catch(err => console.log(err))
     .finally(() => profileSaveButton.textContent = 'Сохранить')
 }
-
+ */
