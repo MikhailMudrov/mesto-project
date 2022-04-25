@@ -1,4 +1,4 @@
-import { apiUrl, token } from "./variables";
+import { apiUrl, token, answerCheck } from "./variables";
 
 // получаем данные профиля
 const getProfileData = () => {
@@ -8,12 +8,7 @@ const getProfileData = () => {
       'Content-Type': 'application/json'
     }
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    })
+    .then(answerCheck)
 }
 
 //получаем карточки
@@ -24,12 +19,7 @@ const getCadrsData = () => {
       'Content-Type': 'application/json'
     }
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    })
+    .then(answerCheck)
 }
 
 //отправляем новый аватар
@@ -42,12 +32,7 @@ const changeAvatar = (url) => {
     },
     body: JSON.stringify({ avatar: url })
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    })
+    .then(answerCheck)
 }
 
 // Отправляем изменения профиля
@@ -63,12 +48,7 @@ const updateProfileData = (data) => {
       about: data.about
     })
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    })
+    .then(answerCheck)
 }
 
 // постим новую карточку
@@ -84,12 +64,7 @@ const postNewCard = (card) => {
       link: card.link
     })
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    })
+    .then(answerCheck)
 }
 
 // удаляем карточки
@@ -101,12 +76,7 @@ export const deleteCard = (id) => {
       'Content-Type': 'application/json'
     },
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    })
+    .then(answerCheck)
 }
 
 export { getProfileData, getCadrsData, changeAvatar, updateProfileData, postNewCard }

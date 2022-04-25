@@ -9,12 +9,30 @@ import {
   deletePopupClose, deletePopup
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
-import { submitProfileForm, actualizationForm, submitProfileAvatar, profileInfo } from './profile'
+import { /* submitProfileForm,*/ actualizationForm,  /*submitProfileAvatar,*/ profileUpdate } from './profile'
 import { clearForm } from './utils';
-import { addCard, checkCardOwner, newCard } from './card'
+import { addCard, checkCardOwner, newCard, downloadCards /* , submitCardForm */ } from './card'
 import { validation } from './validate'
-import { getProfileData, getCadrsData } from './api'
-import { downloadCards, submitCardForm } from './card'
+import { getProfileData, getCadrsData, answerCheck } from './api'
+
+
+//одинокая грустная переменная с данными пользователя не желающа работать из файла с переменными
+let user;
+
+// Загружаем данные с сервера, создаем кррточки, заполняем профиль
+Promise.all([getCadrsData(), getProfileData()])
+  .then(([cards, userData]) => {
+    cards.forEach(card => {
+      newCard(addCard(card, userData))
+    })
+    profileUpdate(userData.avatar, userData.name, userData.about);
+    user = userData;
+  })
+  .catch(err => console.log(err))
+
+
+
+
 
 //слушатели
 //открыть попап аватара
@@ -32,7 +50,8 @@ deletePopupClose.addEventListener('click', function () {
 });
 
 //обновление аватара
-avatarForm.addEventListener('submit', submitProfileAvatar)
+/* avatarForm.addEventListener('submit', submitProfileAvatar) */
+
 //Открыть попап профиля и заполнить полея
 profileEditButton.addEventListener('click', function () {
   actualizationForm();
@@ -41,8 +60,10 @@ profileEditButton.addEventListener('click', function () {
 
 //Закрыть попап профиля
 profileCloseButton.addEventListener('click', function () { closePopup(profilePopup) });
+
 //Открыть попап карточек
 galeryEditButton.addEventListener('click', function () { openPopup(galeryPopup) });
+
 //Закрыть попап карточек и очистить форму
 galeryCloseButton.addEventListener('click', function () {
   clearForm(galeryForm);
@@ -50,20 +71,16 @@ galeryCloseButton.addEventListener('click', function () {
 });
 
 //Сохранение формы профиля
-profileForm.addEventListener('submit', submitProfileForm);
+/* profileForm.addEventListener('submit', submitProfileForm); */
+
 //Закрытие формы профиля при сохранении
 profileForm.addEventListener('submit', function () { closePopup(popupProfile) });
+
 //Закрыть попап картинки
 imageCloseButton.addEventListener('click', function () { closePopup(imagePopup) });
 
 //Добавление карточки из формы
-galeryPopup.addEventListener('submit', submitCardForm)
-/*
-//загружаем данные прлфиля при открытии страницы
-profileInfo()
+/* galeryPopup.addEventListener('submit', submitCardForm) */
 
-//загружаем данные карточек при открытии страницы
-downloadCards()
- */
 //Валидация форм
 validation(validationOptions);

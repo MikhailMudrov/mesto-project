@@ -15,11 +15,21 @@ import { clearForm } from "./utils";
 
 
 //Функция актуализации формы профиля
-export function actualizationForm() {
+function actualizationForm() {
   nameInput.value = profileTitle.textContent;
   aboutInput.value = profileAbout.textContent;
 }
-/* export let user;
+
+//запись данных в профиль
+function profileUpdate(avatar, name, about) {
+  profileAvatar.src = avatar
+  profileTitle.textContent = name
+  profileAbout.textContent = about
+}
+
+export { actualizationForm, profileUpdate }
+
+/*
 //Загрузка данных профиля с сервера
 export const profileInfo = () => {
   profileAvatar.src = loadingImage;
@@ -38,8 +48,8 @@ export const profileInfo = () => {
       profileAbout.textContent = 'Все сломалось =(...';
       console.log(err)
     })
-}
-
+} */
+/*
 // Обработка формы аватара
 export function submitProfileAvatar(evt) {
   evt.preventDefault()

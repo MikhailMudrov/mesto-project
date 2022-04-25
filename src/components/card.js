@@ -12,14 +12,18 @@ import { getCadrsData, postNewCard, getProfileData, deleteCard } from './api';
 import { clearForm } from './utils';
 /* import { profileInfo } from './profile'; */
 
+function newCard(item) {
+  galeryContainer.prepend(item)
+}
+
 //Функция создания карточки
-export function addCard(name, link, _id) {
+function addCard(cardData, userData) {
   const galeryElement = galeryTemplate.cloneNode(true);
   const galeryImage = galeryElement.querySelector('#galeryImage');
-  galeryElement.querySelector('#galeryTitle').textContent = name;
-  galeryImage.setAttribute('src', link);
-  galeryImage.setAttribute('alt', name);
-  galeryImage.setAttribute('data-id', _id)
+  galeryElement.querySelector('#galeryTitle').textContent = cardData.name;
+  galeryImage.setAttribute('src', cardData.link);
+  galeryImage.setAttribute('alt', cardData.name);
+  galeryImage.setAttribute('data-id', cardData._id)
 
   //Подключить лайк
   galeryElement.querySelector('.galery__like').addEventListener('click', likeCard)
@@ -39,14 +43,16 @@ export function addCard(name, link, _id) {
   return galeryElement;
 }
 //лайк карточки
-export function likeCard(evt) {
+function likeCard(evt) {
   evt.target.classList.toggle('galery__like_active');
 }
 
 //удаление карточки
-export function removeCard(evt) {
+function removeCard(evt) {
   evt.target.closest('#galeryItem').remove();
 }
+
+export { newCard, addCard, likeCard, removeCard }
 //переменная с данными пользователя которая не хочет работать из файла переменных
 /* let user; */
 //наполняем переменную с данными пользователя
