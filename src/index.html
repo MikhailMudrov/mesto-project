@@ -120,11 +120,13 @@
 
   <template id="galeryTemplate">
     <li class="galery__item" id="galeryItem">
-      <img class="galery__image" src="" alt="" id="galeryImage"
-        onerror="this.onerror=null;this.src='<%=require('./images/galery-error-image.jpg')%>';">
+      <img class="galery__image" src="" alt="" id="galeryImage">
       <div class="galery__container">
         <h2 class="galery__title" id="galeryTitle"></h2>
-        <button class="galery__like" type="button"></button>
+        <div class="galery__like-container">
+          <button class="galery__like" type="button"></button>
+          <p class="galery__like-counter">0</p>
+        </div>
       </div>
       <button class="galery__delete-button" type="button" id="delButton"></button>
     </li>

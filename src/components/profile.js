@@ -33,6 +33,7 @@ export { actualizationForm, profileUpdate }
 export function submitProfileAvatar(evt) {
   evt.preventDefault()
   avatarSaveButton.textContent = 'Сохранение...'
+  profileAvatar.src = loadingImage
 
   changeAvatar(avatarLink.value)
     .then(res => {
