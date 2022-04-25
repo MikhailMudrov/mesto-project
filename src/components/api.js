@@ -79,4 +79,30 @@ const deleteCard = (id) => {
     .then(answerCheck)
 }
 
-export { getProfileData, getCadrsData, changeAvatar, updateProfileData, postNewCard, deleteCard }
+// Отправляем лайк карточки
+const addLike = (id) => {
+  return fetch(apiUrl + `cards/likes/${id}`, {
+    method: 'PUT',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(answerCheck)
+}
+
+const removeLike = (id) => {
+  return fetch(apiUrl + `cards/likes/${id}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(answerCheck)
+}
+
+export {
+  getProfileData, getCadrsData, changeAvatar, updateProfileData,
+  postNewCard, deleteCard, addLike, removeLike
+}

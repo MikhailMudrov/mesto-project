@@ -9,7 +9,7 @@ import {
   deletePopup
 } from './variables';
 import { openPopup, closePopup } from './modal';
-import { getCadrsData, postNewCard, getProfileData, deleteCard } from './api';
+import { getCadrsData, postNewCard, getProfileData, deleteCard, addLike, removeLike } from './api';
 import { clearForm } from './utils';
 import { user } from './index'
 
@@ -23,6 +23,9 @@ function addCard(cardData, userData) {
   const galeryImage = galeryElement.querySelector('#galeryImage');
   const galeryDelButton = galeryElement.querySelector('.galery__delete-button');
   const galeryItem = galeryElement.querySelector('.galery__item')
+  const likeCounter = galeryElement.querySelector('.galery__like-counter')
+  const galeryLike = galeryElement.querySelector('.galery__like')
+
   galeryElement.querySelector('#galeryTitle').textContent = cardData.name;
   galeryImage.setAttribute('src', cardData.link);
   galeryImage.setAttribute('alt', cardData.name);
@@ -31,12 +34,17 @@ function addCard(cardData, userData) {
   //проверить владельца и спрятать кнопку удаления
   checkCardOwner(cardData, userData, galeryDelButton)
 
+  //передаем колличество лайков
+  if (cardData.likes.length > 0) likeCounter.textContent = cardData.likes.length;
+
+  //проверяем лайк
+  if (cardData.likes.some(element => element._id === userData._id)) galeryLike.classList.add('galery__like_active')
+
   //Подключить лайк
-  galeryElement.querySelector('.galery__like').addEventListener('click', likeCard)
+  galeryElement.querySelector('.galery__like').addEventListener('click', evt => likeSwitch(evt, cardData, likeCounter))
 
   //Удалить карточку
   galeryElement.querySelector('#delButton').addEventListener('click', requestsDeleteCard)
-
 
   //Функция добавления картинки в попап галереи
   function addImageToPopup() {
@@ -50,8 +58,9 @@ function addCard(cardData, userData) {
   galeryImage.addEventListener('click', addImageToPopup);
   return galeryElement;
 }
+
 //лайк карточки
-function likeCard(evt) {
+function likeToggle(evt) {
   evt.target.classList.toggle('galery__like_active');
 }
 
@@ -89,19 +98,16 @@ function submitCardForm(evt) {
 // Обработка нажатия удаления карточки
 function requestsDeleteCard(evt) {
   openPopup(deletePopup)
-
   const card = evt.target.closest('.galery__item')
   const id = card.getAttribute('data-id')
-
   deletePopup.setAttribute('data-id', id)
   console.log(id)
 }
 
-// Функция отправки удаления карточки после подтверждения
+// Удаление карточки после подтверждения
 function deleteCardAccept() {
   const id = deletePopup.getAttribute('data-id')
   const card = document.querySelector(`[data-id='${id}']`)
-
   deleteCard(id)
     .then(() => {
       card.remove()
@@ -110,5 +116,30 @@ function deleteCardAccept() {
     .catch(err => console.log(err))
 }
 
+// ставим и удаляем лайк
+function likeSwitch(evt, cardData, likeCounter) {
+  const id = cardData._id
+  const activeClass = 'galery__like_active'
 
-export { newCard, addCard, likeCard, removeCard, checkCardOwner, submitCardForm, requestsDeleteCard, deleteCardAccept }
+  if (evt.target.classList.contains(activeClass)) {
+    removeLike(id)
+      .then(res => {
+        evt.target.classList.remove(activeClass)
+        if (res.likes.length > 0) likeCounter.textContent = res.likes.length
+        else likeCounter.textContent = '0'
+      })
+  } else {
+    addLike(id)
+      .then(res => {
+        likeCounter.textContent = res.likes.length
+        evt.target.classList.add(activeClass)
+      })
+      .catch(err => console.log(err))
+  }
+}
+
+//экспорты
+export {
+  newCard, addCard, likeToggle, removeCard, checkCardOwner,
+  submitCardForm, requestsDeleteCard, deleteCardAccept, likeSwitch
+}
