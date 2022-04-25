@@ -11,6 +11,7 @@ import {
 import { openPopup, closePopup } from './modal';
 import { getCadrsData, postNewCard, getProfileData, deleteCard } from './api';
 import { clearForm } from './utils';
+import { user } from './index'
 /* import { profileInfo } from './profile'; */
 
 function newCard(item) {
@@ -66,8 +67,27 @@ function checkCardOwner(cardData, userData, galeryDelButton) {
   }
 }
 
+//обработка формы карточки
+function submitCardForm(evt) {
+  evt.preventDefault()
+  galeryAddButton.textContent = 'Загрузка...'
+  const cardData = {
+    name: cardTitle.value,
+    link: cardLink.value
+  }
+  //добавляем новую карточку
+  postNewCard(cardData)
+    .then(res => {
+      galeryContainer.prepend(addCard(res, user));
+      clearForm(galeryForm)
+      closePopup(galeryPopup)
+    })
+    .catch(err => console.log(err))
+    .finally(() => galeryAddButton.textContent = 'Добавить')
+}
 
-export { newCard, addCard, likeCard, removeCard, checkCardOwner }
+
+export { newCard, addCard, likeCard, removeCard, checkCardOwner, submitCardForm }
 //переменная с данными пользователя которая не хочет работать из файла переменных
 /* let user; */
 //наполняем переменную с данными пользователя
@@ -103,24 +123,7 @@ export const downloadCards = () => {
 
 }
 
-//обработка формы карточки
-export function submitCardForm(evt) {
-  evt.preventDefault()
-  galeryAddButton.textContent = 'Загрузка...'
-  const cardData = {
-    name: cardTitle.value,
-    link: cardLink.value
-  }
-  //добавляем новую карточку
-  postNewCard(cardData)
-    .then(res => {
-      galeryContainer.prepend(addCard(res.name, res.link));
-      clearForm(galeryForm)
-      closePopup(galeryPopup)
-    })
-    .catch(err => console.log(err))
-    .finally(() => galeryAddButton.textContent = 'Добавить')
-} */
+ */
 
 /* // Обработка удаления карточки
 export function requestsDeleteCard(evt) {

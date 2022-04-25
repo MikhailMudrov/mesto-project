@@ -29,27 +29,6 @@ function profileUpdate(avatar, name, about) {
 
 export { actualizationForm, profileUpdate }
 
-/*
-//Загрузка данных профиля с сервера
-export const profileInfo = () => {
-  profileAvatar.src = loadingImage;
-  profileTitle.textContent = 'Загрузка...';
-  profileAbout.textContent = 'В процессе...';
-  getProfileData()
-    .then((data) => {
-      profileAvatar.src = data.avatar;
-      profileTitle.textContent = data.name;
-      profileAbout.textContent = data.about;
-
-    })
-    .catch((err) => {
-      profileAvatar.src = profileErrorImage;
-      profileTitle.textContent = 'Эээх...';
-      profileAbout.textContent = 'Все сломалось =(...';
-      console.log(err)
-    })
-} */
-/*
 // Обработка формы аватара
 export function submitProfileAvatar(evt) {
   evt.preventDefault()
@@ -87,4 +66,4 @@ export function submitProfileForm(evt) {
     .catch(err => console.log(err))
     .finally(() => profileSaveButton.textContent = 'Сохранить')
 }
- */
+

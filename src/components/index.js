@@ -9,15 +9,15 @@ import {
   deletePopupClose, deletePopup
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
-import { /* submitProfileForm,*/ actualizationForm,  /*submitProfileAvatar,*/ profileUpdate } from './profile'
+import { submitProfileForm, actualizationForm, submitProfileAvatar, profileUpdate } from './profile'
 import { clearForm } from './utils';
-import { addCard, checkCardOwner, newCard, downloadCards /* , submitCardForm */ } from './card'
+import { addCard, checkCardOwner, newCard, downloadCards, submitCardForm } from './card'
 import { validation } from './validate'
 import { getProfileData, getCadrsData, answerCheck } from './api'
 
 
 //одинокая грустная переменная с данными пользователя не желающа работать из файла с переменными
-let user;
+export let user;
 
 // Загружаем данные с сервера, создаем кррточки, заполняем профиль
 Promise.all([getCadrsData(), getProfileData()])
@@ -51,7 +51,7 @@ deletePopupClose.addEventListener('click', function () {
 });
 
 //обновление аватара
-/* avatarForm.addEventListener('submit', submitProfileAvatar) */
+avatarForm.addEventListener('submit', submitProfileAvatar)
 
 //Открыть попап профиля и заполнить полея
 profileEditButton.addEventListener('click', function () {
@@ -72,7 +72,7 @@ galeryCloseButton.addEventListener('click', function () {
 });
 
 //Сохранение формы профиля
-/* profileForm.addEventListener('submit', submitProfileForm); */
+profileForm.addEventListener('submit', submitProfileForm);
 
 //Закрытие формы профиля при сохранении
 profileForm.addEventListener('submit', function () { closePopup(popupProfile) });
@@ -81,7 +81,7 @@ profileForm.addEventListener('submit', function () { closePopup(popupProfile) })
 imageCloseButton.addEventListener('click', function () { closePopup(imagePopup) });
 
 //Добавление карточки из формы
-/* galeryPopup.addEventListener('submit', submitCardForm) */
+galeryPopup.addEventListener('submit', submitCardForm)
 
 //Валидация форм
 validation(validationOptions);
