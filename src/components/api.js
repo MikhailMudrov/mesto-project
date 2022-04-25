@@ -102,6 +102,7 @@ const removeLike = (id) => {
     .then(answerCheck)
 }
 
+//экспорты
 export {
   getProfileData, getCadrsData, changeAvatar, updateProfileData,
   postNewCard, deleteCard, addLike, removeLike

@@ -1,15 +1,10 @@
 import {
-  profilePopup, galeryPopup, imagePopup, galeryForm,
-  profileEditButton, galeryEditButton, profileCloseButton,
-  galeryCloseButton, imageCloseButton, profileAvatar, profileAvatarButton,
-  profileTitle, profileAbout, profileForm, nameInput, aboutInput,
-  imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
-  validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, galeryAddButton,
-  deletePopup
+  galeryPopup, imagePopup, galeryForm, imageInPopup,
+  imageTextInPopup, galeryTemplate, galeryContainer,
+  cardTitle, cardLink, galeryAddButton, deletePopup
 } from './variables';
 import { openPopup, closePopup } from './modal';
-import { getCadrsData, postNewCard, getProfileData, deleteCard, addLike, removeLike } from './api';
+import { postNewCard, deleteCard, addLike, removeLike } from './api';
 import { clearForm } from './utils';
 import { user } from './index'
 
@@ -124,7 +119,7 @@ function likeSwitch(evt, cardData, likeCounter) {
   if (evt.target.classList.contains(activeClass)) {
     removeLike(id)
       .then(res => {
-        evt.target.classList.remove(activeClass)
+        likeToggle(evt)
         if (res.likes.length > 0) likeCounter.textContent = res.likes.length
         else likeCounter.textContent = '0'
       })
@@ -132,7 +127,7 @@ function likeSwitch(evt, cardData, likeCounter) {
     addLike(id)
       .then(res => {
         likeCounter.textContent = res.likes.length
-        evt.target.classList.add(activeClass)
+        likeToggle(evt)
       })
       .catch(err => console.log(err))
   }
