@@ -59,4 +59,5 @@ const validation = (options) => {
   });
 };
 
+//экспорты
 export { showInputError, hideInputError, checkInputValidity, invalidInput, toggleButtonState, setEventListeners, validation }

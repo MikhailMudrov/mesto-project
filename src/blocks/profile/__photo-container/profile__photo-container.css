@@ -1,0 +1,17 @@
+.profile__photo-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .profile__photo-container {
+    grid-row-end: 2;
+  }
+}
+

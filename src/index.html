@@ -18,8 +18,10 @@
   <main class="content">
     <section class="profile">
       <div class="profile__container">
-        <img class="profile__photo" src="<%=require('./images/profile-kusto.jpg')%>"
-          alt="фото Жака-Ива Кусто извесного исследователя океана">
+        <div class="profile__photo-container">
+          <img class="profile__photo" src="" alt="фото Жака-Ива Кусто извесного исследователя океана">
+          <button class="profile__photo-edit-button"></button>
+        </div>
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <p class="profile__subtitle">Исследователь океана</p>
         <button class="profile__edit-button" type="button"></button>
@@ -57,7 +59,7 @@
             maxlength="200">
           <span class="popup__input-error" id="about-error"></span>
         </label>
-        <button class="popup__button" type="submit">Сохранить</button>
+        <button class="popup__button" type="submit" id="profileSaveButton">Сохранить</button>
       </form>
     </div>
   </div>
@@ -74,10 +76,27 @@
           <span class="popup__input-error" id="imageTitle-error"></span>
         </label>
         <label class="popup__field">
-          <input class="popup__item" type="url" name="imageLink" id="imageLink" placeholder="Ссылка на картинку">
+          <input required class="popup__item" type="url" name="imageLink" id="imageLink"
+            placeholder="Ссылка на картинку">
           <span class="popup__input-error" id="imageLink-error"></span>
         </label>
         <button class="popup__button" type="submit" id="addButton">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup" id="popupAvatar">
+    <!-- popup_opened -->
+    <div class="popup__container">
+      <button class="popup__close" type="button" id="avatarClose"></button>
+      <h2 class="popup__title">обновить аватар</h2>
+      <form class="popup__form" name="place" id="avatarForm">
+        <label class="popup__field">
+          <input required class="popup__item" type="url" name="imageLink" id="avatarLink"
+            placeholder="Ссылка на картинку">
+          <span class="popup__input-error" id="avatarLink-error"></span>
+        </label>
+        <button class="popup__button" type="submit" id="avatarSaveButton">Сохранить</button>
       </form>
     </div>
   </div>
@@ -90,12 +109,24 @@
     </div>
   </div>
 
+  <div class="popup" id="deletePopup">
+    <!-- popup_opened -->
+    <div class="popup__container">
+      <button class="popup__close" type="button" id="deletePopupClose"></button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="popup__button" type="button" id="deletePopupButton">Да</button>
+    </div>
+  </div>
+
   <template id="galeryTemplate">
     <li class="galery__item" id="galeryItem">
       <img class="galery__image" src="" alt="" id="galeryImage">
       <div class="galery__container">
         <h2 class="galery__title" id="galeryTitle"></h2>
-        <button class="galery__like" type="button"></button>
+        <div class="galery__like-container">
+          <button class="galery__like" type="button"></button>
+          <p class="galery__like-counter">0</p>
+        </div>
       </div>
       <button class="galery__delete-button" type="button" id="delButton"></button>
     </li>
