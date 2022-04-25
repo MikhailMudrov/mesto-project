@@ -68,7 +68,7 @@ const postNewCard = (card) => {
 }
 
 // удаляем карточки
-export const deleteCard = (id) => {
+const deleteCard = (id) => {
   return fetch(apiUrl + `cards/${id}`, {
     method: 'DELETE',
     headers: {
@@ -79,4 +79,4 @@ export const deleteCard = (id) => {
     .then(answerCheck)
 }
 
-export { getProfileData, getCadrsData, changeAvatar, updateProfileData, postNewCard }
+export { getProfileData, getCadrsData, changeAvatar, updateProfileData, postNewCard, deleteCard }

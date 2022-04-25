@@ -11,7 +11,7 @@ import {
 import { openPopup, closePopup } from './modal'
 import { submitProfileForm, actualizationForm, submitProfileAvatar, profileUpdate } from './profile'
 import { clearForm } from './utils';
-import { addCard, checkCardOwner, newCard, downloadCards, submitCardForm } from './card'
+import { addCard, checkCardOwner, newCard, downloadCards, submitCardForm, deleteCardAccept } from './card'
 import { validation } from './validate'
 import { getProfileData, getCadrsData, answerCheck } from './api'
 
@@ -33,8 +33,6 @@ Promise.all([getCadrsData(), getProfileData()])
 
 
 
-
-
 //слушатели
 //открыть попап аватара
 profileAvatarButton.addEventListener('click', function () {
@@ -50,8 +48,10 @@ deletePopupClose.addEventListener('click', function () {
   closePopup(deletePopup)
 });
 
+deletePopupButton.addEventListener('click', deleteCardAccept);
+
 //обновление аватара
-avatarForm.addEventListener('submit', submitProfileAvatar)
+avatarForm.addEventListener('submit', submitProfileAvatar);
 
 //Открыть попап профиля и заполнить полея
 profileEditButton.addEventListener('click', function () {
@@ -81,7 +81,7 @@ profileForm.addEventListener('submit', function () { closePopup(popupProfile) })
 imageCloseButton.addEventListener('click', function () { closePopup(imagePopup) });
 
 //Добавление карточки из формы
-galeryPopup.addEventListener('submit', submitCardForm)
+galeryPopup.addEventListener('submit', submitCardForm);
 
 //Валидация форм
 validation(validationOptions);
