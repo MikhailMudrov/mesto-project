@@ -23,7 +23,8 @@ let user;
 Promise.all([getCadrsData(), getProfileData()])
   .then(([cards, userData]) => {
     cards.forEach(card => {
-      newCard(addCard(card, userData))
+      newCard(addCard(card, userData));
+
     })
     profileUpdate(userData.avatar, userData.name, userData.about);
     user = userData;

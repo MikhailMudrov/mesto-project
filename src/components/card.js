@@ -5,7 +5,8 @@ import {
   profileTitle, profileAbout, profileForm, nameInput, aboutInput,
   imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
   validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, galeryAddButton, deletePopup
+  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, galeryAddButton,
+  deletePopup
 } from './variables';
 import { openPopup, closePopup } from './modal';
 import { getCadrsData, postNewCard, getProfileData, deleteCard } from './api';
@@ -20,24 +21,30 @@ function newCard(item) {
 function addCard(cardData, userData) {
   const galeryElement = galeryTemplate.cloneNode(true);
   const galeryImage = galeryElement.querySelector('#galeryImage');
+  const galeryDelButton = galeryElement.querySelector('.galery__delete-button');
   galeryElement.querySelector('#galeryTitle').textContent = cardData.name;
   galeryImage.setAttribute('src', cardData.link);
   galeryImage.setAttribute('alt', cardData.name);
   galeryImage.setAttribute('data-id', cardData._id)
 
+  //проверить владельца и спрятать кнопку удаления
+  checkCardOwner(cardData, userData, galeryDelButton)
+
   //Подключить лайк
   galeryElement.querySelector('.galery__like').addEventListener('click', likeCard)
-  /*
-    //Удалить карточку
-    galeryElement.querySelector('#delButton').addEventListener('click', requestsDeleteCard) */
+
+  //Удалить карточку
+  galeryElement.querySelector('#delButton').addEventListener('click', removeCard)
+
 
   //Функция добавления картинки в попап галереи
   function addImageToPopup() {
     openPopup(imagePopup);
-    imageInPopup.src = link;
-    imageInPopup.alt = name;
-    imageTextInPopup.textContent = name;
+    imageInPopup.src = cardData.link;
+    imageInPopup.alt = cardData.name;
+    imageTextInPopup.textContent = cardData.name;
   }
+
   //Открыть попап галереи
   galeryImage.addEventListener('click', addImageToPopup);
   return galeryElement;
@@ -52,7 +59,15 @@ function removeCard(evt) {
   evt.target.closest('#galeryItem').remove();
 }
 
-export { newCard, addCard, likeCard, removeCard }
+// Проверка владельца карточки скрытие кнопки удаления
+function checkCardOwner(cardData, userData, galeryDelButton) {
+  if (cardData.owner._id !== userData._id) {
+    galeryDelButton.classList.add('galery__delete-button_hide');
+  }
+}
+
+
+export { newCard, addCard, likeCard, removeCard, checkCardOwner }
 //переменная с данными пользователя которая не хочет работать из файла переменных
 /* let user; */
 //наполняем переменную с данными пользователя
