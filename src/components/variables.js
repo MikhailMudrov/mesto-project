@@ -6,10 +6,6 @@ const avatarPopup = document.querySelector('#popupAvatar')
 const galeryForm = galeryPopup.querySelector('#galeryForm')
 const profileEditButton = document.querySelector('.profile__edit-button');
 const galeryEditButton = document.querySelector('.profile__add-button');
-const profileCloseButton = profilePopup.querySelector('#profileClose');
-const avatarCloseButton = document.querySelector('#avatarClose')
-const galeryCloseButton = galeryPopup.querySelector('#galeryClose');
-const imageCloseButton = imagePopup.querySelector('#imageClose');
 const galeryAddButton = galeryPopup.querySelector('#addButton')
 const profileAvatar = document.querySelector('.profile__photo')
 const profileAvatarButton = document.querySelector('.profile__photo-edit-button')
@@ -29,14 +25,9 @@ const galeryContainer = document.querySelector('.galery__list');
 const cardTitle = document.querySelector('#imageTitle');
 const cardLink = document.querySelector('#imageLink');
 const deletePopup = document.querySelector('#deletePopup')
-const deletePopupClose = document.querySelector('#deletePopupClose')
 const deletePopupButton = document.querySelector('deletePopupButton')
-
-//картинки в переменных
+const popups = document.querySelectorAll('.popup')
 const loadingImage = new URL('../images/loading.gif', import.meta.url);
-const galeryErrorImage = new URL('../images/galery-error-image.jpg', import.meta.url)
-const profileErrorImage = new URL('../images/error.png', import.meta.url)
-
 
 //опции функции валидации
 const validationOptions = ({
@@ -49,9 +40,15 @@ const validationOptions = ({
 });
 
 //переменные для api
-const apiUrl = 'https://nomoreparties.co/v1/plus-cohort-9/';
-const token = '216df393-80a6-469f-9917-af68970bf2f0';
-const answerCheck = (res) => {
+const apiConfig = {
+  apiUrl: 'https://nomoreparties.co/v1/plus-cohort-9/',
+  headers: {
+    authorization: '216df393-80a6-469f-9917-af68970bf2f0',
+    'Content-Type': 'application/json'
+  }
+}
+
+const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -61,13 +58,12 @@ const answerCheck = (res) => {
 //экспорты
 export {
   profilePopup, galeryPopup, imagePopup, galeryForm,
-  profileEditButton, galeryEditButton, profileCloseButton,
-  galeryCloseButton, imageCloseButton, profileAvatar, profileAvatarButton,
+  profileEditButton, galeryEditButton, profileAvatar, profileAvatarButton,
   profileTitle, profileAbout, profileForm, nameInput, aboutInput,
   imageInPopup, imageTextInPopup, galeryTemplate, galeryContainer, cardTitle, cardLink,
-  validationOptions, apiUrl, token, avatarPopup, avatarCloseButton, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, galeryErrorImage, profileErrorImage, profileSaveButton,
-  galeryAddButton, deletePopup, deletePopupClose, deletePopupButton, answerCheck
+  validationOptions, avatarPopup, avatarSaveButton,
+  avatarLink, avatarForm, loadingImage, profileSaveButton,
+  galeryAddButton, deletePopup, deletePopupButton, checkResponse, apiConfig, popups
 }
 
 

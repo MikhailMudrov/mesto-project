@@ -1,14 +1,10 @@
 import '../pages/index.css'; //импорт главного файла стилей
 import {
-  profilePopup, galeryPopup, imagePopup, galeryForm,
-  profileEditButton, galeryEditButton, profileCloseButton,
-  galeryCloseButton, imageCloseButton, profileForm,
-  validationOptions, profileAvatarButton, avatarPopup,
-  avatarCloseButton, deletePopupClose, deletePopup
+  profilePopup, galeryPopup, profileEditButton, galeryEditButton,
+  profileForm, validationOptions, profileAvatarButton, avatarPopup, popups
 } from './variables.js'
 import { openPopup, closePopup } from './modal'
-import { submitProfileForm, actualizationForm, submitProfileAvatar, profileUpdate } from './profile'
-import { clearForm } from './utils';
+import { submitProfileForm, fillProfileInputs, submitProfileAvatar, updateProfile } from './profile'
 import { addCard, newCard, submitCardForm, deleteCardAccept } from './card'
 import { validation } from './validate'
 import { getProfileData, getCadrsData } from './api'
@@ -23,25 +19,29 @@ Promise.all([getCadrsData(), getProfileData()])
     cards.forEach(card => {
       newCard(addCard(card, userData));
     })
-    profileUpdate(userData.avatar, userData.name, userData.about);
+    updateProfile(userData.avatar, userData.name, userData.about);
     user = userData;
   })
   .catch(err => console.log(err))
 
 //слушатели
+//Закрытие попапов по крестику и оверлею
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup)
+    }
+  })
+})
+
 //открыть попап аватара
 profileAvatarButton.addEventListener('click', function () {
   openPopup(avatarPopup);
 });
 
-//закрыть попап аватара
-avatarCloseButton.addEventListener('click', function () {
-  closePopup(avatarPopup)
-});
-//закрытие попапа удаления карточки
-deletePopupClose.addEventListener('click', function () {
-  closePopup(deletePopup)
-});
 //подтверждение удаления карточки
 deletePopupButton.addEventListener('click', deleteCardAccept);
 
@@ -50,30 +50,15 @@ avatarForm.addEventListener('submit', submitProfileAvatar);
 
 //Открыть попап профиля и заполнить полея
 profileEditButton.addEventListener('click', function () {
-  actualizationForm();
+  fillProfileInputs();
   openPopup(profilePopup);
 });
-
-//Закрыть попап профиля
-profileCloseButton.addEventListener('click', function () { closePopup(profilePopup) });
 
 //Открыть попап карточек
 galeryEditButton.addEventListener('click', function () { openPopup(galeryPopup) });
 
-//Закрыть попап карточек и очистить форму
-galeryCloseButton.addEventListener('click', function () {
-  clearForm(galeryForm);
-  closePopup(galeryPopup);
-});
-
 //Сохранение формы профиля
 profileForm.addEventListener('submit', submitProfileForm);
-
-//Закрытие формы профиля при сохранении
-profileForm.addEventListener('submit', function () { closePopup(popupProfile) });
-
-//Закрыть попап картинки
-imageCloseButton.addEventListener('click', function () { closePopup(imagePopup) });
 
 //Добавление карточки из формы
 galeryPopup.addEventListener('submit', submitCardForm);

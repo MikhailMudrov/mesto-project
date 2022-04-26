@@ -1,105 +1,81 @@
-import { apiUrl, token, answerCheck } from "./variables";
+import { apiConfig, checkResponse } from "./variables";
 
 // получаем данные профиля
 const getProfileData = () => {
-  return fetch(apiUrl + 'users/me', {
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    }
+  return fetch(`${apiConfig.apiUrl}users/me`, {
+    headers: apiConfig.headers
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 //получаем карточки
 const getCadrsData = () => {
-  return fetch(apiUrl + 'cards', {
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    }
+  return fetch(`${apiConfig.apiUrl}cards`, {
+    headers: apiConfig.headers
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 //отправляем новый аватар
 const changeAvatar = (url) => {
-  return fetch(apiUrl + 'users/me/avatar', {
+  return fetch(`${apiConfig.apiUrl}users/me/avatar`, {
     method: 'PATCH',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: apiConfig.headers,
     body: JSON.stringify({ avatar: url })
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 // Отправляем изменения профиля
 const updateProfileData = (data) => {
-  return fetch(apiUrl + 'users/me', {
+  return fetch(`${apiConfig.apiUrl}users/me`, {
     method: 'PATCH',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: apiConfig.headers,
     body: JSON.stringify({
       name: data.name,
       about: data.about
     })
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 // постим новую карточку
 const postNewCard = (card) => {
-  return fetch(apiUrl + 'cards', {
+  return fetch(`${apiConfig.apiUrl}cards`, {
     method: 'POST',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: apiConfig.headers,
     body: JSON.stringify({
       name: card.name,
       link: card.link
     })
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 // удаляем карточки
 const deleteCard = (id) => {
-  return fetch(apiUrl + `cards/${id}`, {
+  return fetch(`${apiConfig.apiUrl}cards/${id}`, {
     method: 'DELETE',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: apiConfig.headers
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 // Отправляем лайк карточки
 const addLike = (id) => {
-  return fetch(apiUrl + `cards/likes/${id}`, {
+  return fetch(`${apiConfig.apiUrl}cards/likes/${id}`, {
     method: 'PUT',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: apiConfig.headers
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 const removeLike = (id) => {
-  return fetch(apiUrl + `cards/likes/${id}`, {
+  return fetch(`${apiConfig.apiUrl}cards/likes/${id}`, {
     method: 'DELETE',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: apiConfig.headers
   })
-    .then(answerCheck)
+    .then(checkResponse)
 }
 
 //экспорты

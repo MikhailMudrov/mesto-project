@@ -5,7 +5,7 @@ import {
 } from './variables';
 import { openPopup, closePopup } from './modal';
 import { postNewCard, deleteCard, addLike, removeLike } from './api';
-import { clearForm } from './utils';
+import { clearForm, disableButton } from './utils';
 import { user } from './index'
 
 function newCard(item) {
@@ -36,13 +36,13 @@ function addCard(cardData, userData) {
   if (cardData.likes.some(element => element._id === userData._id)) galeryLike.classList.add('galery__like_active')
 
   //Подключить лайк
-  galeryElement.querySelector('.galery__like').addEventListener('click', evt => likeSwitch(evt, cardData, likeCounter))
+  galeryLike.addEventListener('click', evt => likeSwitch(evt, cardData, likeCounter))
 
   //Удалить карточку
   galeryElement.querySelector('#delButton').addEventListener('click', requestsDeleteCard)
 
   //Функция добавления картинки в попап галереи
-  function addImageToPopup() {
+  function handleCardClick() {
     openPopup(imagePopup);
     imageInPopup.src = cardData.link;
     imageInPopup.alt = cardData.name;
@@ -50,7 +50,7 @@ function addCard(cardData, userData) {
   }
 
   //Открыть попап галереи
-  galeryImage.addEventListener('click', addImageToPopup);
+  galeryImage.addEventListener('click', handleCardClick);
   return galeryElement;
 }
 
@@ -85,6 +85,7 @@ function submitCardForm(evt) {
       galeryContainer.prepend(addCard(res, user));
       clearForm(galeryForm)
       closePopup(galeryPopup)
+      disableButton(galeryAddButton)
     })
     .catch(err => console.log(err))
     .finally(() => galeryAddButton.textContent = 'Добавить')
@@ -96,7 +97,6 @@ function requestsDeleteCard(evt) {
   const card = evt.target.closest('.galery__item')
   const id = card.getAttribute('data-id')
   deletePopup.setAttribute('data-id', id)
-  console.log(id)
 }
 
 // Удаление карточки после подтверждения
@@ -123,6 +123,7 @@ function likeSwitch(evt, cardData, likeCounter) {
         if (res.likes.length > 0) likeCounter.textContent = res.likes.length
         else likeCounter.textContent = '0'
       })
+      .catch(err => console.log(err))
   } else {
     addLike(id)
       .then(res => {

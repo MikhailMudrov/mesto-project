@@ -1,20 +1,21 @@
 import {
   profileAvatar, profileTitle, profileAbout,
   nameInput, aboutInput, avatarSaveButton,
-  avatarLink, avatarForm, loadingImage, profileSaveButton
+  avatarLink, avatarForm, loadingImage,
+  profileSaveButton, profilePopup
 } from "./variables";
 import { changeAvatar, updateProfileData } from './api'
 import { closePopup } from "./modal";
-import { clearForm } from "./utils";
+import { clearForm, disableButton } from "./utils";
 
 //Функция актуализации формы профиля
-function actualizationForm() {
+function fillProfileInputs() {
   nameInput.value = profileTitle.textContent;
   aboutInput.value = profileAbout.textContent;
 }
 
 //запись данных в профиль
-function profileUpdate(avatar, name, about) {
+function updateProfile(avatar, name, about) {
   profileAvatar.src = avatar
   profileTitle.textContent = name
   profileAbout.textContent = about
@@ -30,6 +31,7 @@ function submitProfileAvatar(evt) {
       profileAvatar.src = res.avatar
       clearForm(avatarForm)
       closePopup(popupAvatar)
+      disableButton(avatarSaveButton)
     })
     .catch(err => console.log(err))
     .finally(() => avatarSaveButton.textContent = 'Сохранить')
@@ -49,10 +51,12 @@ function submitProfileForm(evt) {
     .then(res => {
       profileTitle.textContent = res.name;
       profileAbout.textContent = res.about;
+      closePopup(profilePopup)
+      disableButton(profileSaveButton)
     })
     .catch(err => console.log(err))
     .finally(() => profileSaveButton.textContent = 'Сохранить')
 }
 
 //экспорты
-export { actualizationForm, profileUpdate, submitProfileAvatar, submitProfileForm }
+export { fillProfileInputs, updateProfile, submitProfileAvatar, submitProfileForm }
